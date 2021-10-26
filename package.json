@@ -1,0 +1,62 @@
+{
+  "name": "npmpackagesupdateinformer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "webstart": "react-scripts start",
+    "webbuild": "react-scripts build",
+    "webtest": "react-scripts test",
+    "webeject": "react-scripts eject",
+    "pod": "pod install --project-directory=ios",
+    "clean": "rm -fr node_modules android/build android/app/build package-lock.json yarn.lock ios/build ios/Pods ios/Podfile.lock android/.gradle",
+    "clean-android": "rm -fr android/build android/app/build ios/build android/.gradle",
+    "clean-ios": "rm -fr ios/build ios/Pods ios/Podfile.lock"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "1.15.9",
+    "@react-navigation/native": "6.0.6",
+    "@react-navigation/stack": "6.0.11",
+    "mobx": "6.3.5",
+    "mobx-react-lite": "3.2.1",
+    "moment": "^2.29.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.66.1",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "3.8.0",
+    "react-native-web": "0.17.5",
+    "react-scripts": "3.4.4"
+  },
+  "devDependencies": {
+    "@babel/core": "7.15.8",
+    "@babel/runtime": "7.15.4",
+    "@react-native-community/eslint-config": "3.0.1",
+    "babel-jest": "27.3.1",
+    "eslint": "7.14.0",
+    "jest": "27.3.1",
+    "metro-react-native-babel-preset": "0.66.2",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

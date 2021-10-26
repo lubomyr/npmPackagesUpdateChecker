@@ -1,0 +1,15 @@
+export const defaultTheme = {
+  primaryColor: 'rebeccapurple',
+  backgroundColor: 'mediumpurple',
+  textColor: 'white',
+  loaderColor: 'orange',
+  enableInputBackground: '#ffffff',
+  disabledColor: '#808080',
+  textLightColor: '#A0A0A0',
+  textDarkColor: '#6F6F6F',
+  lineColor: '#d4d5d8',
+  borderColor: '#DDDDDD',
+  green: '#8BAF60',
+  buttonTextColor: 'white',
+  arrowColor: 'white',
+};
