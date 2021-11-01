@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observable, action} from 'mobx';
 import {defaultTheme} from '../styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const themeKey = 'theme';
 
