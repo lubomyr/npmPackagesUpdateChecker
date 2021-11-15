@@ -14,8 +14,8 @@ import {theme, dimension} from '../styles';
 import {deviceHeight} from '../helpers/dimensionHelper';
 import PropTypes from 'prop-types';
 
-const {borderColor, backgroundColor, arrowColor} = theme;
-const verticalMagicMargin =
+const {backgroundColor, arrowColor} = theme;
+const topMagicMargin =
   Platform.OS === 'android' || Platform.OS === 'web' ? 47 : 0;
 const rowHeight = 36;
 
@@ -30,16 +30,18 @@ export const Dropdown = props => {
   const setModalPosition = () => {
     if (emptyViewRef && emptyViewRef.current) {
       emptyViewRef.current.measure((fx, fy, width, height, px, py) => {
-        if (pos.x !== px || pos.y !== py) {
-          const maxYPos =
-            py + rowHeight * props.data.length + verticalMagicMargin;
-          const openUpValue = Boolean(
-            isOpen && maxYPos > deviceHeight && height < deviceHeight / 2,
+        const maxYPos =
+          py +
+          Math.min(
+            rowHeight * props.data.length + topMagicMargin,
+            deviceHeight / 2.5,
           );
-          if (isMounted.current) {
-            setPos({x: px, y: py, width});
-            setOpenUp(openUpValue);
-          }
+        const openUpValue = Boolean(
+          isOpen && maxYPos > deviceHeight && height < deviceHeight / 2,
+        );
+        if (isMounted.current) {
+          setPos({x: px, y: py, width});
+          setOpenUp(openUpValue);
         }
       });
     }
@@ -50,8 +52,10 @@ export const Dropdown = props => {
   }, []);
 
   useEffect(() => {
-    setModalPosition();
-  });
+    if (isOpen) {
+      setModalPosition();
+    }
+  }, [isOpen, setModalPosition]);
 
   const openClose = () => {
     if (!disabled) {
@@ -179,12 +183,12 @@ export const Dropdown = props => {
                   ? {
                       top:
                         pos.y -
-                        verticalMagicMargin -
+                        topMagicMargin -
                         4 -
                         dimension.inputHeight -
-                        data.length * rowHeight,
+                        Math.min(data.length * rowHeight, deviceHeight / 2.5),
                     }
-                  : {top: pos.y - verticalMagicMargin},
+                  : {top: pos.y - topMagicMargin},
               ]}>
               {listView}
             </View>
@@ -233,7 +237,7 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   border: {
-    borderWidth: 1,
+    //borderWidth: 1,
     //borderColor: borderColor,
     borderRadius: 4,
   },
