@@ -41,36 +41,6 @@ export const themes = [
   },
   {
     id: 5,
-    name: 'LightBlue',
-    theme: {
-      primaryColor: 'mediumblue',
-      backgroundColor: 'lightskyblue',
-      textColor: 'white',
-      loaderColor: 'white',
-    },
-  },
-  {
-    id: 6,
-    name: 'DarkBlue',
-    theme: {
-      primaryColor: 'darkblue',
-      backgroundColor: 'mediumblue',
-      textColor: 'white',
-      loaderColor: 'white',
-    },
-  },
-  {
-    id: 7,
-    name: 'LightPurple',
-    theme: {
-      primaryColor: 'purple',
-      backgroundColor: 'lightgray',
-      textColor: 'white',
-      loaderColor: 'white',
-    },
-  },
-  {
-    id: 8,
     name: 'DarkPurple',
     theme: {
       primaryColor: 'rebeccapurple',
@@ -80,7 +50,7 @@ export const themes = [
     },
   },
   {
-    id: 9,
+    id: 6,
     name: 'OrangeBrown',
     theme: {
       primaryColor: 'brown',
@@ -89,7 +59,7 @@ export const themes = [
     },
   },
   {
-    id: 10,
+    id: 7,
     name: 'DarkViolet',
     theme: {
       primaryColor: 'darkviolet',

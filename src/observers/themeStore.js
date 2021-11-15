@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observable, action} from 'mobx';
 import {defaultTheme} from '../styles';
+import {themes} from '../styles/themes';
 
 const themeKey = 'theme';
 
@@ -27,13 +28,14 @@ export const themeStore = observable({
   },
   saveToStorage: () => {
     if (themeStore.theme) {
-      AsyncStorage.setItem(themeKey, JSON.stringify(themeStore.theme));
+      AsyncStorage.setItem(themeKey, themeStore.theme.name);
     }
   },
   retrieveFromStorage: async () => {
-    const data = await AsyncStorage.getItem(themeKey);
-    if (data) {
-      themeStore.setTheme(JSON.parse(data));
+    const themeName = await AsyncStorage.getItem(themeKey);
+    if (themeName) {
+      const theme = themes.find(i => i?.name === themeName);
+      themeStore.setTheme(theme);
     }
   },
 });
