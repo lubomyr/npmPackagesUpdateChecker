@@ -22,7 +22,7 @@
     "@react-native-async-storage/async-storage": "1.15.14",
     "@react-navigation/native": "6.0.6",
     "@react-navigation/stack": "6.0.11",
-    "mobx": "6.3.9",
+    "mobx": "6.3.10",
     "mobx-react-lite": "3.2.2",
     "moment": "2.29.1",
     "react": "17.0.2",
@@ -42,7 +42,7 @@
     "eslint": "7.14.0",
     "jest": "27.4.5",
     "metro-react-native-babel-preset": "0.66.2",
-    "prop-types": "^15.7.2",
+    "prop-types": "15.8.0",
     "react-test-renderer": "17.0.2"
   },
   "jest": {
