@@ -12,7 +12,7 @@
     "webbuild": "react-scripts build",
     "webtest": "react-scripts test",
     "webeject": "react-scripts eject",
-    "pod": "pod install --project-directory=ios",
+    "pod": "cd ios && pod install && cd ..",
     "android-release": "cd android && ./gradlew assembleRelease && cd ..",
     "clean": "rm -fr node_modules android/build android/app/build package-lock.json yarn.lock ios/build ios/Pods ios/Podfile.lock android/.gradle",
     "clean-native": "rm -fr android/build android/app/build ios/build ios/Pods ios/Podfile.lock android/.gradle",
