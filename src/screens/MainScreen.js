@@ -1,12 +1,17 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {Button, TextInput} from '../components';
 import {packagesStore} from '../observers/packageStore';
 import {themeStore} from '../observers/themeStore';
 import {PackageItem} from '../components';
 import {withLoader} from '../hocs/withLoader';
-import {getPackageAllTags, getPackageDistTags} from '../helpers/apiHelper';
+import {
+  getPackageAllTags,
+  getPackageDistTags,
+  getSuggestions,
+} from '../helpers/apiHelper';
+import {SearchItem} from '../components/SearchItem';
 
 const {getStyles} = themeStore;
 let updateChecked = false;
@@ -14,6 +19,7 @@ let updateChecked = false;
 const MainScreen = props => {
   const {navigation, setLoading} = props;
   const [inputValue, setInputValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const {packages, addPackage, updatePackage, saveToStorage} = packagesStore;
   const themeStyles = getStyles();
 
@@ -62,6 +68,21 @@ const MainScreen = props => {
     saveToStorage();
   };
 
+  const retrieveSuggestions = async text => {
+    setLoading(true);
+    const results = await getSuggestions(text);
+    setLoading(false);
+    setSuggestions(results);
+  };
+
+  useEffect(() => {
+    if (inputValue) {
+      retrieveSuggestions(inputValue);
+    } else {
+      setSuggestions([]);
+    }
+  }, [inputValue]);
+
   useEffect(() => {
     if (!updateChecked && packages.length) {
       updateChecked = true;
@@ -76,6 +97,31 @@ const MainScreen = props => {
       return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
     });
   }, [packages]);
+
+  const searchResultView = (
+    <View style={[themeStyles.primaryBackground, styles.list]}>
+      {suggestions?.length ? (
+        <FlatList
+          data={suggestions}
+          renderItem={({item}) => (
+            <SearchItem
+              style={styles.listItem}
+              data={item}
+              onAddPress={() => {
+                setInputValue(null);
+                addPackageName(item?.name).then();
+              }}
+            />
+          )}
+          keyExtractor={item => item.name}
+        />
+      ) : (
+        <Text style={[themeStyles.primaryBackground, styles.noResults]}>
+          No results
+        </Text>
+      )}
+    </View>
+  );
 
   const listView = sortedList ? (
     <View style={[themeStyles.primaryBackground, styles.list]}>
@@ -108,13 +154,15 @@ const MainScreen = props => {
           value={inputValue}
           onChangeText={text => setInputValue(text)}
         />
-        <Button
-          style={styles.addPackageButton}
-          title={'Add Package'}
-          onPress={() => addPackageName(inputValue)}
-        />
+        {inputValue?.length ? (
+          <Button
+            style={styles.addPackageButton}
+            title={'Cancel'}
+            onPress={() => setInputValue(null)}
+          />
+        ) : null}
       </View>
-      {listView}
+      {inputValue?.length ? searchResultView : listView}
     </View>
   );
 };
@@ -141,5 +189,8 @@ const styles = StyleSheet.create({
   textInput: {flex: 1},
   addPackageButton: {
     marginLeft: 10,
+  },
+  noResults: {
+    margin: 20,
   },
 });
