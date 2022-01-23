@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, Linking, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {withLoader} from '../hocs/withLoader';
 import {getPackageAllTags} from '../helpers/apiHelper';
@@ -16,7 +23,8 @@ const PackageDetails = props => {
   const [details, setDetails] = useState(null);
   const themeStyles = getStyles();
   const {deletePackage, saveToStorage} = packagesStore;
-  const {name, time, homepage, repository} = details || {};
+  const {name, time, homepage, repository, description, license, maintainers} =
+    details || {};
   const distTags = details?.['dist-tags'];
   const getKeys = object => Object.keys(object);
 
@@ -35,7 +43,7 @@ const PackageDetails = props => {
   };
 
   useEffect(() => {
-    retrievePackageDetails(packageName);
+    retrievePackageDetails(packageName).then();
   }, []);
 
   const topContainer = details ? (
@@ -106,20 +114,73 @@ const PackageDetails = props => {
     </View>
   ) : null;
 
-  return (
-    <View style={styles.root}>
-      {topContainer}
-      {distView}
-      {homepageView}
-      {repositoryView}
+  const descriptionView = description ? (
+    <View style={[styles.containerView, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+        Description
+      </Text>
+      <View>
+        <Text style={[styles.text, themeStyles.primaryBackground]}>
+          {description}
+        </Text>
+      </View>
     </View>
+  ) : null;
+
+  const licenseView = description ? (
+    <View style={[styles.containerView, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+        License
+      </Text>
+      <View>
+        <Text style={[styles.text, themeStyles.primaryBackground]}>
+          {license}
+        </Text>
+      </View>
+    </View>
+  ) : null;
+
+  const maintainersView = maintainers?.length ? (
+    <View style={[styles.containerView, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+        Maintainers
+      </Text>
+      <View style={styles.maintainers}>
+        {maintainers.map(i => (
+          <View key={i?.email} style={styles.row}>
+            <Text
+              style={[styles.maintainerName, themeStyles.primaryBackground]}>
+              {i?.name}
+            </Text>
+            <Text
+              style={[styles.maintainerEmail, themeStyles.primaryBackground]}>
+              {i?.email}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </View>
+  ) : null;
+
+  return (
+    <ScrollView>
+      <View style={styles.root}>
+        {topContainer}
+        {distView}
+        {descriptionView}
+        {homepageView}
+        {repositoryView}
+        {licenseView}
+        {maintainersView}
+      </View>
+    </ScrollView>
   );
 };
 export default withLoader(observer(PackageDetails));
 
 const styles = StyleSheet.create({
   root: {
-    justifyContent: 'center',
+    flex: 1,
     padding: 20,
   },
   row: {
@@ -157,4 +218,7 @@ const styles = StyleSheet.create({
   keyText: {flex: 0.7},
   valueText: {flex: 1},
   timeText: {flex: 0.7, marginLeft: 5},
+  maintainers: {alignItems: 'flex-start'},
+  maintainerName: {width: 100},
+  maintainerEmail: {flex: 1},
 });
