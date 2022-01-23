@@ -29,7 +29,7 @@ FieldWrapper.propTypes = {
 const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
-    color: theme.textDarkColor,
+    color: 'white',
     marginBottom: 8,
   },
 });
