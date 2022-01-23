@@ -156,7 +156,7 @@ const MainScreen = props => {
         />
         {inputValue?.length ? (
           <Button
-            style={styles.addPackageButton}
+            style={styles.cancelButton}
             title={'Cancel'}
             onPress={() => setInputValue(null)}
           />
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
   listItem: {},
   textInput: {flex: 1},
-  addPackageButton: {
+  cancelButton: {
     marginLeft: 10,
   },
   noResults: {
