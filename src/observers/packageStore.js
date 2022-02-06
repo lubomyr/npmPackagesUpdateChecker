@@ -8,9 +8,9 @@ export const packagesStore = observable({
   setPackages: action(value => {
     packagesStore.packages = value;
   }),
-  addPackage: action(value => {
-    packagesStore.packages.push(value);
-  }),
+  addPackage: value => {
+    packagesStore.setPackages([...packagesStore.packages, value]);
+  },
   updatePackage: value => {
     const item = packagesStore.packages.find(i => i?.name === value?.name);
     if (value?.dist) {

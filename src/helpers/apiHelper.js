@@ -16,8 +16,8 @@ export const getPackageDistTags = async packageName => {
 };
 
 export const getPackageAllTags = async packageName => {
-  const response = await fetch(
-    `${apiHost}/${packageName}`,
-  ).then(response => response.json());
+  const response = await fetch(`${apiHost}/${packageName}`).then(response =>
+    response.json(),
+  );
   return response;
 };

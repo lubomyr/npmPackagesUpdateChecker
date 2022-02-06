@@ -9,20 +9,22 @@ import {
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {withLoader} from '../hocs/withLoader';
-import {getPackageAllTags} from '../helpers/apiHelper';
+import {getPackageAllTags, getPackageDistTags} from '../helpers/apiHelper';
 import {Button} from '../components';
 import {themeStore} from '../observers/themeStore';
 import {packagesStore} from '../observers/packageStore';
 import {getUpdatedLabel} from '../helpers/timeHelper';
+import {applyRefreshMainScreenCallback} from '../helpers/callbackHelper';
 
 const {getStyles} = themeStore;
 
 const PackageDetails = props => {
   const {navigation, route, setLoading} = props;
   const {packageName} = route?.params;
+  const [buttonTitle, setButtonTitle] = useState();
   const [details, setDetails] = useState(null);
   const themeStyles = getStyles();
-  const {deletePackage, saveToStorage} = packagesStore;
+  const {packages, addPackage, deletePackage, saveToStorage} = packagesStore;
   const {name, time, homepage, repository, description, license, maintainers} =
     details || {};
   const distTags = details?.['dist-tags'];
@@ -46,6 +48,42 @@ const PackageDetails = props => {
     retrievePackageDetails(packageName).then();
   }, []);
 
+  useEffect(() => {
+    if (
+      packages.some(i => i?.name === packageName) &&
+      buttonTitle !== 'Remove'
+    ) {
+      setButtonTitle('Remove');
+    } else if (buttonTitle !== 'Add') {
+      setButtonTitle('Add');
+    }
+  }, [packages]);
+
+  const saveData = () => {
+    saveToStorage();
+    navigation.goBack();
+    applyRefreshMainScreenCallback();
+  };
+
+  const onButtonPress = async () => {
+    const isAdd = !packages.some(i => i?.name === packageName);
+    if (isAdd) {
+      setLoading(true);
+      const dist = await getPackageDistTags(packageName);
+      const fullDetail = await getPackageAllTags(packageName);
+      setLoading(false);
+      addPackage({
+        name: packageName,
+        dist,
+        time: fullDetail?.time,
+      });
+      saveData();
+    } else {
+      deletePackage({name: packageName});
+      saveData();
+    }
+  };
+
   const topContainer = details ? (
     <View style={styles.row}>
       <View style={[styles.titleView, themeStyles.primaryBackground]}>
@@ -55,12 +93,8 @@ const PackageDetails = props => {
       </View>
       <Button
         style={styles.button}
-        title={'Remove'}
-        onPress={() => {
-          deletePackage({name: packageName});
-          saveToStorage();
-          navigation.goBack();
-        }}
+        title={buttonTitle}
+        onPress={onButtonPress}
       />
     </View>
   ) : null;

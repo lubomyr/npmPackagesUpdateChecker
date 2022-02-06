@@ -12,6 +12,7 @@ import {
   getSuggestions,
 } from '../helpers/apiHelper';
 import {SearchItem} from '../components/SearchItem';
+import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
 
 const {getStyles} = themeStore;
 let updateChecked = false;
@@ -22,6 +23,10 @@ const MainScreen = props => {
   const [suggestions, setSuggestions] = useState([]);
   const {packages, addPackage, updatePackage, saveToStorage} = packagesStore;
   const themeStyles = getStyles();
+
+  const refresh = () => {
+    setInputValue('');
+  };
 
   const checkPackageName = async packageName => {
     const dist = await getPackageDistTags(packageName);
@@ -61,13 +66,6 @@ const MainScreen = props => {
     }
   };
 
-  const addPackageName = async packageName => {
-    setLoading(true);
-    await checkPackageName(packageName);
-    setLoading(false);
-    saveToStorage();
-  };
-
   const retrieveSuggestions = async text => {
     setLoading(true);
     const results = await getSuggestions(text);
@@ -90,6 +88,8 @@ const MainScreen = props => {
     }
   }, [packages]);
 
+  useEffect(() => setRefreshMainScreenCallback(() => refresh()), []);
+
   const sortedList = useMemo(() => {
     return packages.slice().sort((a, b) => {
       const timeA = a?.time[a?.dist?.latest];
@@ -107,9 +107,12 @@ const MainScreen = props => {
             <SearchItem
               style={styles.listItem}
               data={item}
-              onAddPress={() => {
-                setInputValue(null);
-                addPackageName(item?.name).then();
+              onViewPress={() => {
+                //setInputValue(null);
+                //addPackageName(item?.name).then();
+                navigation.navigate('PackageDetails', {
+                  packageName: item?.name,
+                });
               }}
             />
           )}

@@ -5,7 +5,7 @@ import {Button} from './Button';
 import {getUpdatedLabel} from '../helpers/timeHelper';
 
 export const SearchItem = withTheme(props => {
-  const {style, data, onAddPress, themeStyles} = props;
+  const {style, data, onViewPress, themeStyles} = props;
   const {name, date, version, description, publisher} = data;
 
   return (
@@ -29,7 +29,7 @@ export const SearchItem = withTheme(props => {
         </Text>
       </View>
       <View>
-        <Button style={styles.button} title={'Add'} onPress={onAddPress} />
+        <Button style={styles.button} title={'View'} onPress={onViewPress} />
       </View>
     </View>
   );
