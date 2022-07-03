@@ -6,11 +6,11 @@ export const getUpdatedLabel = updateTimeValue => {
   const diffTime = moment.duration(
     moment(currentTime).diff(moment(updateTime)),
   );
-  const yearsPassed = parseInt(diffTime.asYears());
-  const monthsPassed = parseInt(diffTime.asMonths());
-  const daysPassed = parseInt(diffTime.asDays());
-  const hoursPassed = parseInt(diffTime.asHours());
-  const minutesPassed = parseInt(diffTime.asMinutes());
+  const yearsPassed = parseInt(diffTime.asYears(), 2);
+  const monthsPassed = parseInt(diffTime.asMonths(), 2);
+  const daysPassed = parseInt(diffTime.asDays(), 2);
+  const hoursPassed = parseInt(diffTime.asHours(), 2);
+  const minutesPassed = parseInt(diffTime.asMinutes(), 2);
   return yearsPassed
     ? `${yearsPassed} years ago`
     : monthsPassed

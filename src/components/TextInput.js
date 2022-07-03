@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TextInput as RNTextInput, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
-import {theme, dimension} from '../styles';
-
-const {primaryColor, borderColor} = theme;
+import {dimension} from '../styles';
 
 export const TextInput = React.forwardRef((props, ref) => {
-  const [isFocused, setFocused] = useState(false);
+  // const [isFocused, setFocused] = useState(false);
   const {
     style,
     value,
@@ -23,13 +21,12 @@ export const TextInput = React.forwardRef((props, ref) => {
     numberOfLines,
     maxLength,
   } = props;
-  const borderStyle = {borderColor: isFocused ? primaryColor : borderColor};
   return (
     <RNTextInput
       ref={ref}
       style={[styles.container, style]}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      // onFocus={() => setFocused(true)}
+      // onBlur={() => setFocused(false)}
       onChangeText={onChangeText}
       onSubmitEditing={onSubmitEditing}
       value={value}

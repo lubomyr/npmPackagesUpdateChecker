@@ -30,9 +30,9 @@ const PackageDetails = props => {
   const distTags = details?.['dist-tags'];
   const getKeys = object => Object.keys(object);
 
-  const retrievePackageDetails = async packageName => {
+  const retrievePackageDetails = async pName => {
     setLoading(true);
-    const fullDetail = await getPackageAllTags(packageName);
+    const fullDetail = await getPackageAllTags(pName);
     if (fullDetail) {
       setDetails(fullDetail);
     }

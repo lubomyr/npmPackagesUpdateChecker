@@ -20,8 +20,9 @@ export const Button = withTheme(props => {
   const titleText = (
     <Text
       style={[
-        {color: inverted ? color : buttonTextColor, fontWeight: 'bold'},
+        {color: inverted ? color : buttonTextColor},
         titleStyle,
+        styles.font,
       ]}>
       {title}
     </Text>
@@ -69,5 +70,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
+  },
+  font: {
+    fontWeight: 'bold',
   },
 });

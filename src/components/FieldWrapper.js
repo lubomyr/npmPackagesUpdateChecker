@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import PropTypes from 'prop-types';
-import {theme, dimension} from '../styles';
 
 export const FieldWrapper = props => {
   const {style: propsStyle, title, children, labelStyle = {}} = props;

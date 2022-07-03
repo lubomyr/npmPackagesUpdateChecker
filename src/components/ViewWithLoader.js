@@ -14,7 +14,7 @@ export const ViewWithLoader = withTheme(props => {
 
   return (
     <View style={[styles.root, style]}>
-      <View style={{flex: 1}}>{children}</View>
+      <View style={styles.flex}>{children}</View>
       {isLoading && loader}
     </View>
   );
@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
   loaderLayout: {
     position: 'absolute',
     alignSelf: 'center',
+  },
+  flex: {
+    flex: 1,
   },
 });
 

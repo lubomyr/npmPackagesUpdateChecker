@@ -16,12 +16,12 @@ const SettingsScreen = props => {
   const themeSelector = (
     <FieldWrapper title={'Theme'}>
       <Dropdown
-        style={{backgroundColor: primaryColor, borderRadius: 4}}
+        style={{backgroundColor: primaryColor, ...styles.dropdownStyle}}
         itemStyle={{backgroundColor: primaryColor}}
-        textStyle={{color: 'white'}}
+        textStyle={styles.dropDownText}
         data={themes}
         value={theme}
-        onChange={theme => setTheme(theme)}
+        onChange={v => setTheme(v)}
       />
     </FieldWrapper>
   );
@@ -34,5 +34,11 @@ const styles = StyleSheet.create({
   root: {
     justifyContent: 'center',
     padding: 30,
+  },
+  dropdownStyle: {
+    borderRadius: 4,
+  },
+  dropDownText: {
+    color: 'white',
   },
 });

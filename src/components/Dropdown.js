@@ -112,7 +112,7 @@ export const Dropdown = props => {
         )}
 
         <VerticalArrow
-          style={[{marginEnd: 10}, arrowStyle]}
+          style={[styles.verticalArrow, arrowStyle]}
           down={!(changeArrowWhenOpen && isOpen)}
           color={arrowColor}
           size={dimension.arrows}
@@ -121,18 +121,18 @@ export const Dropdown = props => {
     </TouchableWithoutFeedback>
   );
 
-  const itemList = data.map((value, index) => {
-    const key = props.keyExtractor ? keyExtractor(value) : index;
-    const text = labelExtractor(value);
+  const itemList = data.map((v, index) => {
+    const key = props.keyExtractor ? keyExtractor(v) : index;
+    const text = labelExtractor(v);
     const itemView = customItemView ? (
-      customItemView(value)
+      customItemView(v)
     ) : (
-      <View style={{height: rowHeight, justifyContent: 'center'}}>
+      <View style={{height: rowHeight, ...styles.listItem}}>
         <Text style={[styles.itemText, textStyle]}>{text}</Text>
       </View>
     );
     return (
-      <TouchableWithoutFeedback key={key} onPress={() => onSelect(value)}>
+      <TouchableWithoutFeedback key={key} onPress={() => onSelect(v)}>
         {itemView}
       </TouchableWithoutFeedback>
     );
@@ -275,5 +275,11 @@ const styles = StyleSheet.create({
   },
   fullWidth: {
     width: '100%',
+  },
+  verticalArrow: {
+    marginEnd: 10,
+  },
+  listItem: {
+    justifyContent: 'center',
   },
 });

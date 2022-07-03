@@ -33,7 +33,7 @@
     "react-native-safe-area-context": "4.3.1",
     "react-native-screens": "3.14.0",
     "react-native-web": "0.18.4",
-    "react-scripts": "3.4.4"
+    "react-scripts": "4.0.3"
   },
   "devDependencies": {
     "@babel/core": "7.18.6",
