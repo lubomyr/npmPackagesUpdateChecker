@@ -29,9 +29,13 @@ export const packagesStore = observable({
     AsyncStorage.setItem(packagesKey, JSON.stringify(packagesStore.packages));
   },
   retrieveFromStorage: async () => {
-    const data = await AsyncStorage.getItem(packagesKey);
-    if (data) {
-      packagesStore.setPackages(JSON.parse(data));
+    try {
+      const data = await AsyncStorage.getItem(packagesKey);
+      if (data) {
+        packagesStore.setPackages(JSON.parse(data));
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 });

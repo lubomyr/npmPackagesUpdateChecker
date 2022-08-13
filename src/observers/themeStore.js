@@ -32,10 +32,14 @@ export const themeStore = observable({
     }
   },
   retrieveFromStorage: async () => {
-    const themeName = await AsyncStorage.getItem(themeKey);
-    if (themeName) {
-      const theme = themes.find(i => i?.name === themeName);
-      themeStore.setTheme(theme);
+    try {
+      const themeName = await AsyncStorage.getItem(themeKey);
+      if (themeName) {
+        const theme = themes.find(i => i?.name === themeName);
+        themeStore.setTheme(theme);
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 });

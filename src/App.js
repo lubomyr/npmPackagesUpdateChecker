@@ -13,8 +13,12 @@ const App = props => {
   const {retrieveFromStorage: retrievePackagesFromStore} = packagesStore;
 
   useEffect(() => {
-    retrieveThemeFromStorage();
-    retrievePackagesFromStore();
+    retrieveThemeFromStorage()
+      .then()
+      .catch(error => console.log(error));
+    retrievePackagesFromStore()
+      .then()
+      .catch(error => console.log(error));
   }, []);
 
   return <Navigation />;

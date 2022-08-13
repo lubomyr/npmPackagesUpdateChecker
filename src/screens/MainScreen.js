@@ -75,7 +75,7 @@ const MainScreen = props => {
 
   useEffect(() => {
     if (inputValue) {
-      retrieveSuggestions(inputValue);
+      retrieveSuggestions(inputValue).then();
     } else {
       setSuggestions([]);
     }
