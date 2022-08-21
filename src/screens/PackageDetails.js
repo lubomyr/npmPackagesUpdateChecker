@@ -7,24 +7,22 @@ import {
   Linking,
   TouchableOpacity,
 } from 'react-native';
-import {observer} from 'mobx-react-lite';
 import {withLoader} from '../hocs/withLoader';
 import {getPackageAllTags, getPackageDistTags} from '../helpers/apiHelper';
 import {Button} from '../components';
-import {themeStore} from '../observers/themeStore';
-import {packagesStore} from '../observers/packageStore';
 import {getUpdatedLabel} from '../helpers/timeHelper';
 import {applyRefreshMainScreenCallback} from '../helpers/callbackHelper';
-
-const {getStyles} = themeStore;
+import {addPackage, deletePackage, saveToStorage} from '../store/packagesSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {withTheme} from '../hocs/withTheme';
 
 const PackageDetails = props => {
-  const {navigation, route, setLoading} = props;
+  const {navigation, route, setLoading, themeStyles} = props;
   const {packageName} = route?.params;
   const [buttonTitle, setButtonTitle] = useState();
   const [details, setDetails] = useState(null);
-  const themeStyles = getStyles();
-  const {packages, addPackage, deletePackage, saveToStorage} = packagesStore;
+  const dispatch = useDispatch();
+  const packages = useSelector(state => state?.packages?.packages);
   const {name, time, homepage, repository, description, license, maintainers} =
     details || {};
   const distTags = details?.['dist-tags'];
@@ -60,7 +58,7 @@ const PackageDetails = props => {
   }, [packages]);
 
   const saveData = () => {
-    saveToStorage();
+    dispatch(saveToStorage());
     navigation.goBack();
     applyRefreshMainScreenCallback();
   };
@@ -72,14 +70,16 @@ const PackageDetails = props => {
       const dist = await getPackageDistTags(packageName);
       const fullDetail = await getPackageAllTags(packageName);
       setLoading(false);
-      addPackage({
-        name: packageName,
-        dist,
-        time: fullDetail?.time,
-      });
+      dispatch(
+        addPackage({
+          name: packageName,
+          dist,
+          time: fullDetail?.time,
+        }),
+      );
       saveData();
     } else {
-      deletePackage({name: packageName});
+      dispatch(deletePackage({name: packageName}));
       saveData();
     }
   };
@@ -210,7 +210,7 @@ const PackageDetails = props => {
     </ScrollView>
   );
 };
-export default withLoader(observer(PackageDetails));
+export default withLoader(withTheme(PackageDetails));
 
 const styles = StyleSheet.create({
   root: {

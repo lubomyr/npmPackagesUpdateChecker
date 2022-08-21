@@ -15,7 +15,7 @@ const MainStack = createStackNavigator();
 export const navigationRef = createNavigationContainerRef();
 
 const getScreenOptions = ({navigation, title, theme}) => {
-  const {primaryColor, backgroundColor} = theme;
+  const {primaryColor, backgroundColor} = theme || {};
   return {
     headerShown: true,
     title,

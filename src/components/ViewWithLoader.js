@@ -5,7 +5,7 @@ import {withTheme} from '../hocs/withTheme';
 
 export const ViewWithLoader = withTheme(props => {
   const {style, children, isLoading, theme} = props;
-  const {loaderColor} = theme;
+  const {loaderColor} = theme || {};
   const loader = (
     <View style={styles.loaderLayout}>
       <ActivityIndicator size="large" color={loaderColor} />

@@ -1,16 +1,21 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {observer} from 'mobx-react-lite';
 import {FieldWrapper, Dropdown} from '../components';
 import {themes} from '../styles/themes';
-import {themeStore} from '../observers/themeStore';
+import {useSelector, useDispatch} from 'react-redux';
+import {setTheme, saveToStorage} from '../store/themesSlice';
 
 const SettingsScreen = props => {
-  const {theme, setTheme, saveToStorage, getTheme} = themeStore;
-  const {primaryColor} = getTheme();
+  const theme = useSelector(state => state?.themes?.theme);
+  const dispatch = useDispatch();
+  const {primaryColor} = theme?.theme || {};
+
+  console.log(useSelector(v => v));
 
   useEffect(() => {
-    return () => saveToStorage();
+    return () => {
+      dispatch(saveToStorage());
+    };
   }, []);
 
   const themeSelector = (
@@ -21,14 +26,14 @@ const SettingsScreen = props => {
         textStyle={styles.dropDownText}
         data={themes}
         value={theme}
-        onChange={v => setTheme(v)}
+        onChange={v => dispatch(setTheme(v))}
       />
     </FieldWrapper>
   );
 
   return <View style={styles.root}>{themeSelector}</View>;
 };
-export default observer(SettingsScreen);
+export default SettingsScreen;
 
 const styles = StyleSheet.create({
   root: {

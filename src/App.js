@@ -1,24 +1,20 @@
 import React, {useEffect} from 'react';
 import {LogBox} from 'react-native';
+import {useDispatch} from 'react-redux';
 import Navigation from './Navigation';
-import {themeStore} from './observers/themeStore';
-import {packagesStore} from './observers/packageStore';
+import {retrieveTheme} from './store/themesSlice';
+import {retrievePackages} from './store/packagesSlice';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
 ]);
 
 const App = props => {
-  const {retrieveFromStorage: retrieveThemeFromStorage} = themeStore;
-  const {retrieveFromStorage: retrievePackagesFromStore} = packagesStore;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    retrieveThemeFromStorage()
-      .then()
-      .catch(error => console.log(error));
-    retrievePackagesFromStore()
-      .then()
-      .catch(error => console.log(error));
+    dispatch(retrieveTheme());
+    dispatch(retrievePackages());
   }, []);
 
   return <Navigation />;

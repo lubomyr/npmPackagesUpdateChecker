@@ -1,14 +1,17 @@
 import React from 'react';
-import {observer} from 'mobx-react-lite';
-import {themeStore} from '../observers/themeStore';
+import {useSelector} from 'react-redux';
+import {getStyles} from '../store/themesSlice';
 
 export function withTheme(WrappedComponent) {
-  return observer(props => {
-    const {getTheme, getStyles} = themeStore;
-    const theme = getTheme();
-    const themeStyles = getStyles();
+  return props => {
+    const theme = useSelector(state => state?.themes?.theme);
+    const themeStyles = getStyles(theme?.theme);
     return (
-      <WrappedComponent {...props} theme={theme} themeStyles={themeStyles} />
+      <WrappedComponent
+        {...props}
+        theme={theme?.theme}
+        themeStyles={themeStyles}
+      />
     );
-  });
+  };
 }

@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
-import {observer} from 'mobx-react-lite';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, TextInput} from '../components';
-import {packagesStore} from '../observers/packageStore';
-import {themeStore} from '../observers/themeStore';
 import {PackageItem} from '../components';
 import {withLoader} from '../hocs/withLoader';
 import {
@@ -13,16 +11,17 @@ import {
 } from '../helpers/apiHelper';
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
+import {withTheme} from '../hocs/withTheme';
+import {addPackage, updatePackage, saveToStorage} from '../store/packagesSlice';
 
-const {getStyles} = themeStore;
 let updateChecked = false;
 
 const MainScreen = props => {
-  const {navigation, setLoading} = props;
+  const {navigation, setLoading, themeStyles} = props;
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const {packages, addPackage, updatePackage, saveToStorage} = packagesStore;
-  const themeStyles = getStyles();
+  const dispatch = useDispatch();
+  const packages = useSelector(state => state?.packages?.packages);
 
   const refresh = () => {
     setInputValue('');
@@ -34,20 +33,24 @@ const MainScreen = props => {
     if (latest) {
       const existingItem = packages.find(i => i?.name === packageName);
       if (existingItem) {
-        updatePackage({
-          name: packageName,
-          dist,
-        });
+        dispatch(
+          updatePackage({
+            name: packageName,
+            dist,
+          }),
+        );
       } else {
-        addPackage({
-          name: packageName,
-          dist,
-        });
+        dispatch(
+          addPackage({
+            name: packageName,
+            dist,
+          }),
+        );
       }
       if (!existingItem || !existingItem?.time[latest]) {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
-          updatePackage({name: packageName, time: fullDetail?.time});
+          dispatch(updatePackage({name: packageName, time: fullDetail?.time}));
         }
       }
     }
@@ -56,13 +59,21 @@ const MainScreen = props => {
   const checkUpdates = async () => {
     if (packages?.length) {
       setLoading(true);
-      await Promise.all(
-        packages.map(async i => {
-          await checkPackageName(i?.name);
-        }),
-      );
+      try {
+        await Promise.all(
+          packages
+            .map(async i => {
+              await checkPackageName(i?.name);
+            })
+            .catch(error => {
+              setLoading(false);
+            }),
+        );
+      } catch (error) {
+        setLoading(false);
+      }
       setLoading(false);
-      saveToStorage();
+      dispatch(saveToStorage());
     }
   };
 
@@ -82,7 +93,7 @@ const MainScreen = props => {
   }, [inputValue]);
 
   useEffect(() => {
-    if (!updateChecked && packages.length) {
+    if (!updateChecked && packages?.length) {
       updateChecked = true;
       checkUpdates();
     }
@@ -91,11 +102,13 @@ const MainScreen = props => {
   useEffect(() => setRefreshMainScreenCallback(() => refresh()), []);
 
   const sortedList = useMemo(() => {
-    return packages.slice().sort((a, b) => {
-      const timeA = a?.time[a?.dist?.latest];
-      const timeB = b?.time[b?.dist?.latest];
-      return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
-    });
+    return packages
+      ? packages.slice().sort((a, b) => {
+          const timeA = a?.time[a?.dist?.latest];
+          const timeB = b?.time[b?.dist?.latest];
+          return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
+        })
+      : [];
   }, [packages]);
 
   const searchResultView = (
@@ -169,7 +182,7 @@ const MainScreen = props => {
     </View>
   );
 };
-export default withLoader(observer(MainScreen));
+export default withLoader(withTheme(MainScreen));
 
 const styles = StyleSheet.create({
   root: {
