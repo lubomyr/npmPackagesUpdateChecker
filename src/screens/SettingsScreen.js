@@ -10,8 +10,6 @@ const SettingsScreen = props => {
   const dispatch = useDispatch();
   const {primaryColor} = theme?.theme || {};
 
-  console.log(useSelector(v => v));
-
   useEffect(() => {
     return () => {
       dispatch(saveToStorage());
@@ -21,11 +19,12 @@ const SettingsScreen = props => {
   const themeSelector = (
     <FieldWrapper title={'Theme'}>
       <Dropdown
+        key={theme?.name}
         style={{backgroundColor: primaryColor, ...styles.dropdownStyle}}
         itemStyle={{backgroundColor: primaryColor}}
         textStyle={styles.dropDownText}
         data={themes}
-        value={theme}
+        value={theme?.name || ''}
         onChange={v => dispatch(setTheme(v))}
       />
     </FieldWrapper>
