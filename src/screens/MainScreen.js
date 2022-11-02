@@ -13,6 +13,7 @@ import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
 import {withTheme} from '../hocs/withTheme';
 import {addPackage, updatePackage, saveToStorage} from '../store/packagesSlice';
+import { asyncForEachStrict } from "../helpers/asyncHelper";
 
 let updateChecked = false;
 
@@ -30,7 +31,7 @@ const MainScreen = props => {
   const checkPackageName = async packageName => {
     const dist = await getPackageDistTags(packageName);
     const {latest} = dist || {};
-    if (latest) {
+    if (latest && packages?.length) {
       const existingItem = packages.find(i => i?.name === packageName);
       if (existingItem) {
         dispatch(
@@ -47,7 +48,7 @@ const MainScreen = props => {
           }),
         );
       }
-      if (!existingItem || !existingItem?.time[latest]) {
+      if (!existingItem || !existingItem?.time?.[latest]) {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
           dispatch(updatePackage({name: packageName, time: fullDetail?.time}));
@@ -60,14 +61,9 @@ const MainScreen = props => {
     if (packages?.length) {
       setLoading(true);
       try {
-        await Promise.all(
-          packages
-            .map(async i => {
-              await checkPackageName(i?.name);
-            })
-            .catch(error => {
-              setLoading(false);
-            }),
+        await asyncForEachStrict(
+          packages,
+          async i => await checkPackageName(i?.name),
         );
       } catch (error) {
         setLoading(false);
