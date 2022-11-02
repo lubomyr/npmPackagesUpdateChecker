@@ -100,10 +100,10 @@ const MainScreen = props => {
   const sortedList = useMemo(() => {
     return packages
       ? packages.slice().sort((a, b) => {
-          const timeA = a?.time[a?.dist?.latest];
-          const timeB = b?.time[b?.dist?.latest];
-          return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
-        })
+        const timeA = a?.time[a?.dist?.latest];
+        const timeB = b?.time[b?.dist?.latest];
+        return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
+      })
       : [];
   }, [packages]);
 
