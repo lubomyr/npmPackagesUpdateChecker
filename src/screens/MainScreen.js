@@ -13,6 +13,7 @@ import {
 } from '../helpers/apiHelper';
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
+import {asyncForEachStrict} from '../helpers/asyncHelper';
 
 const {getStyles} = themeStore;
 let updateChecked = false;
@@ -56,10 +57,9 @@ const MainScreen = props => {
   const checkUpdates = async () => {
     if (packages?.length) {
       setLoading(true);
-      await Promise.all(
-        packages.map(async i => {
-          await checkPackageName(i?.name);
-        }),
+      await asyncForEachStrict(
+        packages,
+        async i => await checkPackageName(i?.name),
       );
       setLoading(false);
       saveToStorage();
