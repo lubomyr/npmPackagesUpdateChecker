@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Platform,
+  ToastAndroid,
+} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {Button, TextInput} from '../components';
 import {packagesStore} from '../observers/packageStore';
@@ -14,12 +21,13 @@ import {
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
 import {asyncForEachStrict} from '../helpers/asyncHelper';
+import {withProgress} from '../hocs/withProgress';
 
 const {getStyles} = themeStore;
 let updateChecked = false;
 
 const MainScreen = props => {
-  const {navigation, setLoading} = props;
+  const {navigation, setLoading, setShowProgress, setProgress} = props;
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const {packages, addPackage, updatePackage, saveToStorage} = packagesStore;
@@ -29,8 +37,9 @@ const MainScreen = props => {
     setInputValue('');
   };
 
-  const checkPackageName = async packageName => {
+  const checkPackageName = async (packageName, progress) => {
     const dist = await getPackageDistTags(packageName);
+    setProgress(progress);
     const {latest} = dist || {};
     if (latest) {
       const existingItem = packages.find(i => i?.name === packageName);
@@ -48,6 +57,12 @@ const MainScreen = props => {
       if (!existingItem || !existingItem?.time[latest]) {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
+          if (Platform.OS === 'android') {
+            ToastAndroid.show(
+              `${packageName} updated to ${dist?.latest}`,
+              ToastAndroid.SHORT,
+            );
+          }
           updatePackage({name: packageName, time: fullDetail?.time});
         }
       }
@@ -56,13 +71,23 @@ const MainScreen = props => {
 
   const checkUpdates = async () => {
     if (packages?.length) {
-      setLoading(true);
+      if (Platform.OS === 'android' || Platform.OS === 'ios') {
+        setShowProgress(true);
+      } else {
+        setLoading(true);
+      }
+      setProgress(0);
       await Promise.all(
-        packages.map(async i => {
-          await checkPackageName(i?.name);
+        packages.map(async (i, index) => {
+          let progress = (index + 1) / packages?.length;
+          await checkPackageName(i?.name, progress);
         }),
       );
-      setLoading(false);
+      if (Platform.OS === 'android' || Platform.OS === 'ios') {
+        setShowProgress(false);
+      } else {
+        setLoading(false);
+      }
       saveToStorage();
     }
   };
@@ -170,7 +195,7 @@ const MainScreen = props => {
     </View>
   );
 };
-export default withLoader(observer(MainScreen));
+export default withLoader(withProgress(observer(MainScreen)));
 
 const styles = StyleSheet.create({
   root: {
