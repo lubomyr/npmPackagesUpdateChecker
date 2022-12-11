@@ -57,9 +57,10 @@ const MainScreen = props => {
   const checkUpdates = async () => {
     if (packages?.length) {
       setLoading(true);
-      await asyncForEachStrict(
-        packages,
-        async i => await checkPackageName(i?.name),
+      await Promise.all(
+        packages.map(async i => {
+          await checkPackageName(i?.name);
+        }),
       );
       setLoading(false);
       saveToStorage();
