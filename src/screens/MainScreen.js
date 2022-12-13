@@ -1,6 +1,13 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Platform,
+  ToastAndroid,
+} from 'react-native';
 import {Button, TextInput} from '../components';
 import {PackageItem} from '../components';
 import {withLoader} from '../hocs/withLoader';
@@ -13,12 +20,13 @@ import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
 import {withTheme} from '../hocs/withTheme';
 import {addPackage, updatePackage, saveToStorage} from '../store/packagesSlice';
-import { asyncForEachStrict } from "../helpers/asyncHelper";
+import {asyncForEachStrict} from '../helpers/asyncHelper';
+import {withProgress} from '../hocs/withProgress';
 
 let updateChecked = false;
 
 const MainScreen = props => {
-  const {navigation, setLoading, themeStyles} = props;
+  const {navigation, setLoading, themeStyles, setShowProgress, setProgress} = props;
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const dispatch = useDispatch();
@@ -28,8 +36,9 @@ const MainScreen = props => {
     setInputValue('');
   };
 
-  const checkPackageName = async packageName => {
+  const checkPackageName = async (packageName, progress) => {
     const dist = await getPackageDistTags(packageName);
+    setProgress(progress);
     const {latest} = dist || {};
     if (latest && packages?.length) {
       const existingItem = packages.find(i => i?.name === packageName);
@@ -52,6 +61,13 @@ const MainScreen = props => {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
           dispatch(updatePackage({name: packageName, time: fullDetail?.time}));
+          if (Platform.OS === 'android') {
+            ToastAndroid.show(
+              `${packageName} updated to ${dist?.latest}`,
+              ToastAndroid.SHORT,
+            );
+          }
+          updatePackage({name: packageName, time: fullDetail?.time});
         }
       }
     }
@@ -59,17 +75,24 @@ const MainScreen = props => {
 
   const checkUpdates = async () => {
     if (packages?.length) {
-      setLoading(true);
-      try {
-        await asyncForEachStrict(
-          packages,
-          async i => await checkPackageName(i?.name),
-        );
-      } catch (error) {
+      if (Platform.OS === 'android' || Platform.OS === 'ios') {
+        setShowProgress(true);
+      } else {
+        setLoading(true);
+      }
+      setProgress(0);
+      await Promise.all(
+        packages.map(async (i, index) => {
+          let progress = (index + 1) / packages?.length;
+          await checkPackageName(i?.name, progress);
+        }),
+      );
+      if (Platform.OS === 'android' || Platform.OS === 'ios') {
+        setShowProgress(false);
+      } else {
         setLoading(false);
       }
-      setLoading(false);
-      dispatch(saveToStorage());
+      saveToStorage();
     }
   };
 
@@ -178,7 +201,8 @@ const MainScreen = props => {
     </View>
   );
 };
-export default withLoader(withTheme(MainScreen));
+
+export default withLoader(withProgress(withTheme(MainScreen)));
 
 const styles = StyleSheet.create({
   root: {

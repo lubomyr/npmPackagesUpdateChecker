@@ -13,6 +13,7 @@ export const Button = withTheme(props => {
     inverted,
     disabled,
     onPress,
+    onLongPress,
     style,
     titleStyle = {},
   } = props;
@@ -37,7 +38,10 @@ export const Button = withTheme(props => {
   };
 
   return (
-    <RootView style={[styles.basic, inlineStyle, style]} onPress={onPress}>
+    <RootView
+      style={[styles.basic, inlineStyle, style]}
+      onPress={onPress}
+      onLongPress={onLongPress}>
       {titleText}
     </RootView>
   );

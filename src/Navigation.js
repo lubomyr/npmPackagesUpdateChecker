@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MainScreen from './screens/MainScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PackageDetails from './screens/PackageDetails';
+import ApiLogger from './screens/ApiLogger';
 import {withTheme} from './hocs/withTheme';
 
 const MainStack = createStackNavigator();
@@ -36,6 +37,7 @@ const getScreenOptions = ({navigation, title, theme}) => {
       <Button
         title={'Settings'}
         onPress={() => navigation.navigate('SettingsScreen')}
+        onLongPress={() => navigation.navigate('ApiLogger')}
       />
     ),
   };
@@ -57,6 +59,11 @@ const MainStackNavigator = ({navigation, theme}) => (
       name={'PackageDetails'}
       component={PackageDetails}
       options={getScreenOptions({navigation, title: 'Package Details', theme})}
+    />
+    <MainStack.Screen
+      name={'ApiLogger'}
+      component={ApiLogger}
+      options={getScreenOptions({navigation, title: 'Api Logger', theme})}
     />
   </MainStack.Navigator>
 );
