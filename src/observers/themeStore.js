@@ -11,7 +11,7 @@ export const themeStore = observable({
   setTheme: action(value => {
     themeStore.theme = value;
   }),
-  getTheme: () => ({...defaultTheme, ...themeStore.theme?.theme}),
+  getTheme: () => ({...defaultTheme, ...(themeStore?.theme?.theme || {})}),
   getStyles: () => {
     const theme = themeStore.getTheme();
     const {primaryColor, textColor} = theme || {};
@@ -28,7 +28,7 @@ export const themeStore = observable({
   },
   saveToStorage: () => {
     if (themeStore.theme) {
-      AsyncStorage.setItem(themeKey, themeStore.theme.name);
+      AsyncStorage.setItem(themeKey, themeStore.theme?.name);
     }
   },
   retrieveFromStorage: async () => {
