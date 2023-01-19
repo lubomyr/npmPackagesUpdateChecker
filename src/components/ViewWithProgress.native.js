@@ -6,7 +6,6 @@ import {withTheme} from '../hocs/withTheme';
 
 export const ViewWithProgress = withTheme(props => {
   const {style, children, isShow, progress, theme} = props;
-  console.log('progress', progress);
   const {loaderColor} = theme;
   const progressBar = (
     <View style={styles.loaderLayout}>
