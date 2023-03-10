@@ -1,15 +1,14 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import {theme, dimension} from '../styles';
-import {withTheme} from '../hocs/withTheme';
+import {dimension} from '../styles';
 
-const {disabledColor, buttonTextColor} = theme;
-
-export const Button = withTheme(props => {
+export const Button = props => {
+  const {colors} = useTheme();
   const {
     title = '',
-    color = props?.theme?.primaryColor,
+    color = colors?.primaryColor,
     inverted,
     disabled,
     onPress,
@@ -17,6 +16,7 @@ export const Button = withTheme(props => {
     style,
     titleStyle = {},
   } = props;
+  const {disabledColor, buttonTextColor} = colors;
   const RootView = disabled ? View : TouchableOpacity;
   const titleText = (
     <Text
@@ -45,7 +45,7 @@ export const Button = withTheme(props => {
       {titleText}
     </RootView>
   );
-});
+};
 
 Button.propTypes = {
   onPress: PropTypes.func.isRequired,

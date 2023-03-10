@@ -1,14 +1,15 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {getUpdatedLabel} from '../helpers/timeHelper';
-import {withTheme} from '../hocs/withTheme';
 
-export const PackageItem = withTheme(props => {
-  const {style, value, themeStyles, onPress} = props;
+export const PackageItem = props => {
+  const {style, value, onPress} = props;
   const {name, dist, time} = value || {};
   const {latest} = dist || {};
   const unFormattedTime = time?.[latest];
   const timeLabel = unFormattedTime ? getUpdatedLabel(unFormattedTime) : '-';
+  const {styles: themeStyles} = useTheme();
 
   return (
     <TouchableOpacity style={[styles.row, style]} onPress={onPress}>
@@ -21,7 +22,7 @@ export const PackageItem = withTheme(props => {
       </Text>
     </TouchableOpacity>
   );
-});
+};
 
 const styles = StyleSheet.create({
   row: {

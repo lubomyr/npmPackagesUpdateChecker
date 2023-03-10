@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {FieldWrapper, Dropdown} from '../components';
 import {themes} from '../styles/themes';
 import {themeStore} from '../observers/themeStore';
 
 const SettingsScreen = props => {
-  const {theme, setTheme, saveToStorage, getTheme} = themeStore;
-  const {primaryColor} = getTheme();
+  const {theme, setTheme, saveToStorage} = themeStore;
+  const {colors} = useTheme();
+  const {primaryColor} = colors;
 
   useEffect(() => {
     return () => saveToStorage();

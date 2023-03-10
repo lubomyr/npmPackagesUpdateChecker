@@ -7,23 +7,21 @@ import {
   Linking,
   TouchableOpacity,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {withLoader} from '../hocs/withLoader';
 import {getPackageAllTags, getPackageDistTags} from '../helpers/apiHelper';
 import {Button} from '../components';
-import {themeStore} from '../observers/themeStore';
 import {packagesStore} from '../observers/packageStore';
 import {getUpdatedLabel} from '../helpers/timeHelper';
 import {applyRefreshMainScreenCallback} from '../helpers/callbackHelper';
-
-const {getStyles} = themeStore;
 
 const PackageDetails = props => {
   const {navigation, route, setLoading} = props;
   const {packageName} = route?.params;
   const [buttonTitle, setButtonTitle] = useState();
   const [details, setDetails] = useState(null);
-  const themeStyles = getStyles();
+  const {styles: themeStyles} = useTheme();
   const {packages, addPackage, deletePackage, saveToStorage} = packagesStore;
   const {name, time, homepage, repository, description, license, maintainers} =
     details || {};

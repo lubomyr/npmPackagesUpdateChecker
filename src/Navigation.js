@@ -69,9 +69,11 @@ const MainStackNavigator = ({navigation, theme}) => (
 );
 
 const Navigation = props => {
-  const {theme} = props;
+  const {theme, themeStyles} = props;
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer
+      ref={navigationRef}
+      theme={{colors: theme, styles: themeStyles}}>
       <MainStackNavigator theme={theme} navigation={navigationRef} />
     </NavigationContainer>
   );

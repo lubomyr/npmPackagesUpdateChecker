@@ -7,10 +7,10 @@ import {
   Platform,
   ToastAndroid,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {Button, TextInput} from '../components';
 import {packagesStore} from '../observers/packageStore';
-import {themeStore} from '../observers/themeStore';
 import {PackageItem} from '../components';
 import {withLoader} from '../hocs/withLoader';
 import {
@@ -20,18 +20,16 @@ import {
 } from '../helpers/apiHelper';
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
-import {asyncForEachStrict} from '../helpers/asyncHelper';
 import {withProgress} from '../hocs/withProgress';
 
-const {getStyles} = themeStore;
 let updateChecked = false;
 
 const MainScreen = props => {
   const {navigation, setLoading, setShowProgress, setProgress} = props;
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const {styles: themeStyles} = useTheme();
   const {packages, addPackage, updatePackage, saveToStorage} = packagesStore;
-  const themeStyles = getStyles();
 
   const refresh = () => {
     setInputValue('');
