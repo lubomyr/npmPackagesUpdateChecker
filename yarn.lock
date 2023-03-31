@@ -1841,10 +1841,10 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@react-native-async-storage/async-storage@1.17.11":
-  version "1.17.11"
-  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.17.11.tgz#7ec329c1b9f610e344602e806b04d7c928a2341d"
-  integrity sha512-bzs45n5HNcDq6mxXnSsOHysZWn1SbbebNxldBXCQs8dSvF8Aor9KCdpm+TpnnGweK3R6diqsT8lFhX77VX0NFw==
+"@react-native-async-storage/async-storage@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.18.1.tgz#b1aea4f07fb1dba3325b857b770671517ddab221"
+  integrity sha512-70aFW8fVCKl+oA1AKPFDpE6s4t9pulj2QeLX+MabEmzfT3urd/3cckv45WJvtocdoIH/oXA3Y+YcCRJCcNa8mA==
   dependencies:
     merge-options "^3.0.4"
 
@@ -8538,10 +8538,10 @@ mobx-react-lite@3.4.3:
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.4.3.tgz#3a4c22c30bfaa8b1b2aa48d12b2ba811c0947ab7"
   integrity sha512-NkJREyFTSUXR772Qaai51BnE1voWx56LOL80xG7qkZr6vo8vEaLF3sz1JNUVh+rxmUzxYaqOhfuxTfqUh0FXUg==
 
-mobx@6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.8.0.tgz#59051755fdb5c8a9f3f2e0a9b6abaf86bab7f843"
-  integrity sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==
+mobx@6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.9.0.tgz#8a894c26417c05bed2cf7499322e589ee9787397"
+  integrity sha512-HdKewQEREEJgsWnErClfbFoVebze6rGazxFLU/XUyrII8dORfVszN1V0BMRnQSzcgsNNtkX8DHj3nC6cdWE9YQ==
 
 moment@2.29.4:
   version "2.29.4"
@@ -10025,10 +10025,10 @@ react-native-gradle-plugin@^0.71.17:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.17.tgz#cf780a27270f0a32dca8184eff91555d7627dd00"
   integrity sha512-OXXYgpISEqERwjSlaCiaQY6cTY5CH6j73gdkWpK0hedxtiWMWgH+i5TOi4hIGYitm9kQBeyDu+wim9fA8ROFJA==
 
-react-native-network-logger@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/react-native-network-logger/-/react-native-network-logger-1.14.0.tgz#dc7d8cd1837853943d69733d1ff2bc01e220fc5a"
-  integrity sha512-4ycgJWMKwi4zOWLwxwhe8iYinhPEHXhtDqFmQ+oxcrANx7hk6x7JfXyd3PVueShfaSvZxf22CcYHNHvy3Z0lyQ==
+react-native-network-logger@1.14.1:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/react-native-network-logger/-/react-native-network-logger-1.14.1.tgz#dfaac74231eac26bf94dcab39112a2548fd7d342"
+  integrity sha512-Qq4KTfJLdXgTFJcuC3T11EK7oyHRmniMGSeR9wipRxaMBijOe/mwNd1AJEFFVCQmEpwiUfgeXL6qZGDb85Jvmw==
 
 react-native-progress@5.0.0:
   version "5.0.0"
@@ -10050,10 +10050,10 @@ react-native-screens@3.20.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-svg@13.8.0:
-  version "13.8.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.8.0.tgz#b6a22cf77f8098f910490a13aeb160a37e182f97"
-  integrity sha512-G8Mx6W86da+vFimZBJvA93POw8yz0fgDS5biy6oIjMWVJVQSDzCyzwO/zY0yuZmCDhKSZzogl5m0wXXvW2OcTA==
+react-native-svg@13.9.0:
+  version "13.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.9.0.tgz#8df8a690dd00362601f074dec5d3a86dd0f99c7f"
+  integrity sha512-Ey18POH0dA0ob/QiwCBVrxIiwflhYuw0P0hBlOHeY4J5cdbs8ngdKHeWC/Kt9+ryP6fNoEQ1PUgPYw2Bs/rp5Q==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"
