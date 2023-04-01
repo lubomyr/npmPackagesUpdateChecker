@@ -1,12 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  Platform,
-  ToastAndroid,
-} from 'react-native';
+import {View, StyleSheet, FlatList, Text, Platform} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {Button, TextInput} from '../components';
@@ -21,6 +14,7 @@ import {
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
 import {withProgress} from '../hocs/withProgress';
+import {showNotification} from '../helpers/notificationHelper';
 
 let updateChecked = false;
 
@@ -55,12 +49,7 @@ const MainScreen = props => {
       if (!existingItem || !existingItem?.time[latest]) {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
-          if (Platform.OS === 'android') {
-            ToastAndroid.show(
-              `${packageName} updated to ${dist?.latest}`,
-              ToastAndroid.SHORT,
-            );
-          }
+          showNotification(`${packageName} updated to ${dist?.latest}`);
           updatePackage({name: packageName, time: fullDetail?.time});
         }
       }
