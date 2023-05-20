@@ -5,7 +5,7 @@
   "scripts": {
     "android": "watchman watch-del-all && react-native run-android",
     "ios": "watchman watch-del-all && react-native run-ios",
-    "macos": "react-native run-macos",
+    "macos": "watchman watch-del-all && react-native run-macos",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
@@ -15,10 +15,11 @@
     "webeject": "react-scripts eject",
     "pod": "cd ios && pod install && cd ..",
     "android-release": "cd android && ./gradlew assembleRelease && cd ..",
-    "clean": "rm -fr node_modules android/build android/app/build package-lock.json yarn.lock ios/build ios/Pods ios/Podfile.lock android/.gradle",
+    "clean": "rm -fr node_modules package-lock.json yarn.lock android/build android/app/build android/.gradle ios/build ios/Pods ios/Podfile.lock macos/build macos/Pods macos/Podfile.lock",
     "clean-native": "rm -fr android/build android/app/build ios/build ios/Pods ios/Podfile.lock android/.gradle",
     "clean-android": "rm -fr android/build android/app/build ios/build android/.gradle",
-    "clean-ios": "rm -fr ios/build ios/Pods ios/Podfile.lock"
+    "clean-ios": "rm -fr ios/build ios/Pods ios/Podfile.lock",
+    "clean-macos": "rm -fr macos/build macos/Pods macos/Podfile.lock"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.18.1",
@@ -31,6 +32,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.71.8",
     "react-native-gesture-handler": "2.10.1",
+    "react-native-macos": "^0.71.0-0",
     "react-native-network-logger": "1.14.1",
     "react-native-progress": "5.0.0",
     "react-native-safe-area-context": "4.5.3",
