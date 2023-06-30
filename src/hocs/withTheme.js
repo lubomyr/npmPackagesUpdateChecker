@@ -7,8 +7,8 @@ export function withTheme(WrappedComponent) {
     const {getTheme, getStyles} = themeStore;
     const theme = getTheme();
     const themeStyles = getStyles();
-    return (
+    return theme && themeStyles ? (
       <WrappedComponent {...props} theme={theme} themeStyles={themeStyles} />
-    );
+    ) : null;
   });
 }

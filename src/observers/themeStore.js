@@ -36,7 +36,9 @@ export const themeStore = observable({
       const themeName = await AsyncStorage.getItem(themeKey);
       if (themeName) {
         const theme = themes.find(i => i?.name === themeName);
-        themeStore.setTheme(theme);
+        if (theme) {
+          themeStore.setTheme(theme);
+        }
       }
     } catch (error) {
       console.log(error);
