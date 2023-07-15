@@ -1,11 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import {withTheme} from '../hocs/withTheme';
 
-export const ViewWithLoader = withTheme(props => {
-  const {style, children, isLoading, theme} = props;
-  const {loaderColor} = theme || {};
+export const ViewWithLoader = props => {
+  const {style, children, isLoading} = props;
+  const {colors} = useTheme();
+  const {loaderColor} = colors;
+
   const loader = (
     <View style={styles.loaderLayout}>
       <ActivityIndicator size="large" color={loaderColor} />
@@ -18,7 +20,7 @@ export const ViewWithLoader = withTheme(props => {
       {isLoading && loader}
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   root: {

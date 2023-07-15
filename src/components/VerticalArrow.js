@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {theme} from '../styles';
+import {useTheme} from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
-const {primaryColor} = theme;
-
 const VerticalArrow = props => {
+  const {colors} = useTheme();
+  const {primaryColor} = colors;
   const {style, size = 10, color = primaryColor, down} = props;
 
   return (

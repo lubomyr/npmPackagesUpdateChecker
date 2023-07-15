@@ -2,10 +2,10 @@
  * @format
  */
 import React from 'react';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import App from './src/App';
-import {name as appName} from './app.json';
+import {name} from './app.json';
 import {store} from './src/store/store';
 
 const app = props => (
@@ -14,4 +14,5 @@ const app = props => (
   </Provider>
 );
 
+const appName = Platform.OS === 'macos' ? name.toLowerCase() : name;
 AppRegistry.registerComponent(appName, () => app);

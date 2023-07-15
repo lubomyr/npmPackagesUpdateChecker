@@ -9,12 +9,12 @@ import {
   Platform,
   Modal,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import VerticalArrow from './VerticalArrow';
-import {theme, dimension} from '../styles';
+import {dimension} from '../styles';
 import {deviceHeight} from '../helpers/dimensionHelper';
 import PropTypes from 'prop-types';
 
-const {backgroundColor, arrowColor} = theme;
 const topMagicMargin =
   Platform.OS === 'android' || Platform.OS === 'web' ? 47 : 0;
 const rowHeight = 36;
@@ -26,6 +26,8 @@ export const Dropdown = props => {
   const [openUp, setOpenUp] = useState(false);
   const emptyViewRef = useRef(null);
   const isMounted = useRef(true);
+  const {colors} = useTheme();
+  const {backgroundColor, arrowColor} = colors;
 
   const setModalPosition = () => {
     if (emptyViewRef && emptyViewRef.current) {
@@ -151,11 +153,13 @@ export const Dropdown = props => {
   const listView = isOpen ? (
     <ScrollView
       style={[
+        {backgroundColor: backgroundColor},
         styles.border,
         styles.listLayout,
         platformStyle,
         listInternalBorderStyle,
         itemStyle,
+        //{backgroundColor: enableInputBackground},
       ]}>
       {itemList}
     </ScrollView>
@@ -245,7 +249,6 @@ const styles = StyleSheet.create({
     top: dimension.inputHeight,
     position: 'absolute',
     width: '100%',
-    backgroundColor: theme.enableInputBackground,
     zIndex: 1,
   },
   itemText: {
@@ -253,7 +256,6 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   listLayout: {
-    backgroundColor: backgroundColor,
     marginTop: 2,
     zIndex: 1,
     maxHeight: deviceHeight / 2.5,

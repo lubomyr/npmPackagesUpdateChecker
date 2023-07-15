@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {withTheme} from '../hocs/withTheme';
+import {useTheme} from '@react-navigation/native';
 import {Button} from './Button';
 import {getUpdatedLabel} from '../helpers/timeHelper';
 
-export const SearchItem = withTheme(props => {
-  const {style, data, onViewPress, themeStyles} = props;
+export const SearchItem = props => {
+  const {style, data, onViewPress} = props;
   const {name, date, version, description, publisher} = data;
+  const {styles: themeStyles} = useTheme();
 
   return (
     <View style={[styles.row, style]}>
@@ -33,7 +34,7 @@ export const SearchItem = withTheme(props => {
       </View>
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   row: {

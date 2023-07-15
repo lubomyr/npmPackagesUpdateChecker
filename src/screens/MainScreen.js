@@ -6,8 +6,8 @@ import {
   FlatList,
   Text,
   Platform,
-  ToastAndroid,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {Button, TextInput} from '../components';
 import {PackageItem} from '../components';
 import {withLoader} from '../hocs/withLoader';
@@ -18,19 +18,20 @@ import {
 } from '../helpers/apiHelper';
 import {SearchItem} from '../components/SearchItem';
 import {setRefreshMainScreenCallback} from '../helpers/callbackHelper';
-import {withTheme} from '../hocs/withTheme';
 import {addPackage, updatePackage, saveToStorage} from '../store/packagesSlice';
 import {asyncForEachStrict} from '../helpers/asyncHelper';
 import {withProgress} from '../hocs/withProgress';
+import {showNotification} from '../helpers/notificationHelper';
 
 let updateChecked = false;
 
 const MainScreen = props => {
-  const {navigation, setLoading, themeStyles, setShowProgress, setProgress} = props;
+  const {navigation, setLoading, setShowProgress, setProgress} = props;
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const dispatch = useDispatch();
   const packages = useSelector(state => state?.packages?.packages);
+  const {styles: themeStyles} = useTheme();
 
   const refresh = () => {
     setInputValue('');
@@ -61,12 +62,7 @@ const MainScreen = props => {
         const fullDetail = await getPackageAllTags(packageName);
         if (fullDetail?.time) {
           dispatch(updatePackage({name: packageName, time: fullDetail?.time}));
-          if (Platform.OS === 'android') {
-            ToastAndroid.show(
-              `${packageName} updated to ${dist?.latest}`,
-              ToastAndroid.SHORT,
-            );
-          }
+          showNotification(`${packageName} updated to ${dist?.latest}`)
           updatePackage({name: packageName, time: fullDetail?.time});
         }
       }
@@ -202,7 +198,7 @@ const MainScreen = props => {
   );
 };
 
-export default withLoader(withProgress(withTheme(MainScreen)));
+export default withLoader(withProgress(MainScreen));
 
 const styles = StyleSheet.create({
   root: {

@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
 import {FieldWrapper, Dropdown} from '../components';
 import {themes} from '../styles/themes';
-import {useSelector, useDispatch} from 'react-redux';
 import {setTheme, saveToStorage} from '../store/themesSlice';
 
 const SettingsScreen = props => {
   const theme = useSelector(state => state?.themes?.theme);
   const dispatch = useDispatch();
-  const {primaryColor} = theme?.theme || {};
+  const {colors} = useTheme();
+  const {primaryColor} = colors;
 
   useEffect(() => {
     return () => {

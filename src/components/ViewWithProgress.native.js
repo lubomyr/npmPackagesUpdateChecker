@@ -2,12 +2,9 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import * as Progress from 'react-native-progress';
 import PropTypes from 'prop-types';
-import {withTheme} from '../hocs/withTheme';
 
-export const ViewWithProgress = withTheme(props => {
-  const {style, children, isShow, progress, theme} = props;
-  console.log('progress', progress);
-  const {loaderColor} = theme;
+export const ViewWithProgress = props => {
+  const {style, children, isShow, progress} = props;
   const progressBar = (
     <View style={styles.loaderLayout}>
       <Progress.Circle
@@ -25,7 +22,7 @@ export const ViewWithProgress = withTheme(props => {
       {isShow && progressBar}
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   root: {

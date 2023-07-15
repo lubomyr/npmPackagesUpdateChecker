@@ -7,22 +7,23 @@ import {
   Linking,
   TouchableOpacity,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
 import {withLoader} from '../hocs/withLoader';
 import {getPackageAllTags, getPackageDistTags} from '../helpers/apiHelper';
 import {Button} from '../components';
 import {getUpdatedLabel} from '../helpers/timeHelper';
 import {applyRefreshMainScreenCallback} from '../helpers/callbackHelper';
 import {addPackage, deletePackage, saveToStorage} from '../store/packagesSlice';
-import {useDispatch, useSelector} from 'react-redux';
-import {withTheme} from '../hocs/withTheme';
 
 const PackageDetails = props => {
-  const {navigation, route, setLoading, themeStyles} = props;
+  const {navigation, route, setLoading} = props;
   const {packageName} = route?.params;
   const [buttonTitle, setButtonTitle] = useState();
   const [details, setDetails] = useState(null);
   const dispatch = useDispatch();
   const packages = useSelector(state => state?.packages?.packages);
+  const {styles: themeStyles} = useTheme();
   const {name, time, homepage, repository, description, license, maintainers} =
     details || {};
   const distTags = details?.['dist-tags'];
@@ -210,7 +211,7 @@ const PackageDetails = props => {
     </ScrollView>
   );
 };
-export default withLoader(withTheme(PackageDetails));
+export default withLoader(PackageDetails);
 
 const styles = StyleSheet.create({
   root: {
