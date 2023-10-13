@@ -88,7 +88,7 @@ const MainScreen = props => {
       } else {
         setLoading(false);
       }
-      saveToStorage();
+      dispatch(saveToStorage());
     }
   };
 
