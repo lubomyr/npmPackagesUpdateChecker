@@ -11,7 +11,7 @@
 		514201522437B4B40078DB4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514201512437B4B40078DB4F /* Assets.xcassets */; };
 		514201552437B4B40078DB4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514201532437B4B40078DB4F /* Main.storyboard */; };
 		514201582437B4B40078DB4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 514201572437B4B40078DB4F /* main.m */; };
-		741A2120A6C71781AB9084E7 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F30DD5EC261294BD78AB40ED /* libPods-npmpackagesupdateinformer-macOS.a */; };
+		AC06BFD18D10E0CCC4CAE1D9 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +24,10 @@
 		514201562437B4B40078DB4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		514201572437B4B40078DB4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		514201592437B4B40078DB4F /* npmpackagesupdateinformer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmpackagesupdateinformer.entitlements; sourceTree = "<group>"; };
-		6813ACCD4B7BDF9D6E922578 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-npmpackagesupdateinformer-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F30DD5EC261294BD78AB40ED /* libPods-npmpackagesupdateinformer-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-npmpackagesupdateinformer-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE6BA8224D30A722D070F403 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				741A2120A6C71781AB9084E7 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */,
+				AC06BFD18D10E0CCC4CAE1D9 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F30DD5EC261294BD78AB40ED /* libPods-npmpackagesupdateinformer-macOS.a */,
+				D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,16 +79,6 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		8330BA42995714FED9A94770 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FE6BA8224D30A722D070F403 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */,
-				6813ACCD4B7BDF9D6E922578 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +86,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				8330BA42995714FED9A94770 /* Pods */,
+				D01203824FD0175C4B7E9732 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -110,6 +100,16 @@
 				514201492437B4B30078DB4F /* npmpackagesupdateinformer.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D01203824FD0175C4B7E9732 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */,
+				8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +142,7 @@
 				514201462437B4B30078DB4F /* Frameworks */,
 				514201472437B4B30078DB4F /* Resources */,
 				381D8A6E24576A4E00465D17 /* Bundle React Native code and images */,
-				C17B2228D90E49B659FBC154 /* [CP] Copy Pods Resources */,
+				9410A5864D671251994B627C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,7 +263,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native-macos/scripts/react-native-xcode.sh\n";
 		};
-		C17B2228D90E49B659FBC154 /* [CP] Copy Pods Resources */ = {
+		9410A5864D671251994B627C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -358,9 +358,10 @@
 		};
 		5142015B2437B4B40078DB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE6BA8224D30A722D070F403 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */;
+			baseConfigurationReference = 529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = "npmpackagesupdateinformer-macos/Info.plist";
@@ -374,14 +375,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = npmpackagesupdateinformer;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		5142015C2437B4B40078DB4F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6813ACCD4B7BDF9D6E922578 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */;
+			baseConfigurationReference = 8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "npmpackagesupdateinformer-macos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -394,6 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = npmpackagesupdateinformer;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -457,8 +462,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -518,8 +522,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
