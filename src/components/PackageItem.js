@@ -13,11 +13,11 @@ export const PackageItem = props => {
 
   return (
     <TouchableOpacity style={[styles.row, style]} onPress={onPress}>
-      <Text style={[styles.text, themeStyles.primaryBackground]}>{name}</Text>
-      <Text style={[styles.textVer, themeStyles.primaryBackground]}>
+      <Text style={[styles.text, themeStyles.primaryTextInBackground]}>{name}</Text>
+      <Text style={[styles.textVer, themeStyles.primaryTextInBackground]}>
         {latest}
       </Text>
-      <Text style={[styles.textTime, themeStyles.primaryBackground]}>
+      <Text style={[styles.textTime, themeStyles.primaryTextInBackground]}>
         {timeLabel}
       </Text>
     </TouchableOpacity>

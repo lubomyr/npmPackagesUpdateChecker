@@ -85,7 +85,7 @@ const PackageDetails = props => {
   const topContainer = details ? (
     <View style={styles.row}>
       <View style={[styles.titleView, themeStyles.primaryBackground]}>
-        <Text style={[styles.titleText, themeStyles.primaryBackground]}>
+        <Text style={[styles.titleText, themeStyles.primaryTextInBackground]}>
           {name}
         </Text>
       </View>
@@ -100,11 +100,13 @@ const PackageDetails = props => {
   const distKeys = distTags ? getKeys(distTags) : [];
   const distList = distKeys.map(key => (
     <View key={key} style={styles.row}>
-      <Text style={[styles.keyText, themeStyles.primaryBackground]}>{key}</Text>
-      <Text style={[styles.valueText, themeStyles.primaryBackground]}>
+      <Text style={[styles.keyText, themeStyles.primaryTextInBackground]}>
+        {key}
+      </Text>
+      <Text style={[styles.valueText, themeStyles.primaryTextInBackground]}>
         {distTags[key]}
       </Text>
-      <Text style={[styles.timeText, themeStyles.primaryBackground]}>
+      <Text style={[styles.timeText, themeStyles.primaryTextInBackground]}>
         {getUpdatedLabel(time[distTags[key]])}
       </Text>
     </View>
@@ -112,7 +114,7 @@ const PackageDetails = props => {
 
   const distView = distTags ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         dist-tags
       </Text>
       {distList}
@@ -121,11 +123,11 @@ const PackageDetails = props => {
 
   const homepageView = homepage ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         Home page
       </Text>
       <TouchableOpacity onPress={() => Linking.openURL(homepage)}>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           {homepage}
         </Text>
       </TouchableOpacity>
@@ -134,12 +136,12 @@ const PackageDetails = props => {
 
   const repositoryView = repository ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         Repository
       </Text>
       <TouchableOpacity
         onPress={() => Linking.openURL(getRepositoryUrl(repository?.url))}>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           {repository?.url}
         </Text>
       </TouchableOpacity>
@@ -148,11 +150,11 @@ const PackageDetails = props => {
 
   const descriptionView = description ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         Description
       </Text>
       <View>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           {description}
         </Text>
       </View>
@@ -161,11 +163,11 @@ const PackageDetails = props => {
 
   const licenseView = description ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         License
       </Text>
       <View>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           {license}
         </Text>
       </View>
@@ -174,18 +176,24 @@ const PackageDetails = props => {
 
   const maintainersView = maintainers?.length ? (
     <View style={[styles.containerView, themeStyles.primaryBackground]}>
-      <Text style={[styles.textBold, themeStyles.primaryBackground]}>
+      <Text style={[styles.textBold, themeStyles.primaryTextInBackground]}>
         Maintainers
       </Text>
       <View style={styles.maintainers}>
         {maintainers.map(i => (
           <View key={i?.email} style={styles.row}>
             <Text
-              style={[styles.maintainerName, themeStyles.primaryBackground]}>
+              style={[
+                styles.maintainerName,
+                themeStyles.primaryTextInBackground,
+              ]}>
               {i?.name}
             </Text>
             <Text
-              style={[styles.maintainerEmail, themeStyles.primaryBackground]}>
+              style={[
+                styles.maintainerEmail,
+                themeStyles.primaryTextInBackground,
+              ]}>
               {i?.email}
             </Text>
           </View>
@@ -217,7 +225,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   list: {
     marginTop: 20,
@@ -247,10 +256,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
-  keyText: {flex: 0.7},
-  valueText: {flex: 1},
-  timeText: {flex: 0.7, marginLeft: 5},
-  maintainers: {alignItems: 'flex-start'},
-  maintainerName: {width: 100},
-  maintainerEmail: {flex: 1},
+  keyText: {flex: 1},
+  valueText: {flex: 1, textAlign: 'center'},
+  timeText: {flex: 1, textAlign: 'right'},
+  maintainers: {alignItems: 'center'},
+  maintainerName: {flex: 1, marginRight: 5, textAlign: 'right'},
+  maintainerEmail: {flex: 1, marginLeft: 5},
 });

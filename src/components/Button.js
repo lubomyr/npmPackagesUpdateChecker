@@ -32,8 +32,8 @@ export const Button = props => {
     backgroundColor: disabled
       ? disabledColor
       : inverted
-      ? 'transparent'
-      : color,
+        ? 'transparent'
+        : color,
     borderColor: disabled ? disabledColor : color,
   };
 

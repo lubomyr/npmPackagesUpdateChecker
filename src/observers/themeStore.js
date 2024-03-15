@@ -18,6 +18,12 @@ export const themeStore = observable({
     const styles = StyleSheet.create({
       primaryBackground: {
         backgroundColor: primaryColor,
+      },
+      primaryTextInBackground: {
+        color: textColor,
+      },
+      primaryTextInput: {
+        backgroundColor: primaryColor,
         color: textColor,
       },
       primaryText: {

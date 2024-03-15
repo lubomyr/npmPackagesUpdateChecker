@@ -12,20 +12,20 @@ export const SearchItem = props => {
   return (
     <View style={[styles.row, style]}>
       <View style={styles.flex}>
-        <Text style={[styles.bold, themeStyles.primaryBackground]}>{name}</Text>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.bold, themeStyles.primaryTextInBackground]}>{name}</Text>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Version: {version}
         </Text>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Last update {getUpdatedLabel(date)}
         </Text>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Publisher: {publisher?.username}
         </Text>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Email: {publisher?.email}
         </Text>
-        <Text style={[styles.text, themeStyles.primaryBackground]}>
+        <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Description: {description}
         </Text>
       </View>

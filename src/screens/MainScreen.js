@@ -132,7 +132,7 @@ const MainScreen = props => {
           keyExtractor={item => item.name}
         />
       ) : (
-        <Text style={[themeStyles.primaryBackground, styles.noResults]}>
+        <Text style={[themeStyles.primaryTextInBackground, styles.noResults]}>
           No results
         </Text>
       )}
@@ -166,7 +166,7 @@ const MainScreen = props => {
     <View style={styles.root}>
       <View style={styles.row}>
         <TextInput
-          style={[styles.textInput, themeStyles.primaryBackground]}
+          style={[styles.textInput, themeStyles.primaryTextInput]}
           value={inputValue}
           onChangeText={text => setInputValue(text)}
         />

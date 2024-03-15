@@ -83,7 +83,7 @@ export const Dropdown = props => {
     textStyle,
     itemStyle,
     arrowStyle,
-    useModal = true,
+    useModal = Platform.OS !== 'macos',
     disabled = false,
     hideInternalBorder = false,
     changeArrowWhenOpen = false,
