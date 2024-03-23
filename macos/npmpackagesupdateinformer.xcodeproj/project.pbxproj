@@ -11,11 +11,13 @@
 		514201522437B4B40078DB4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514201512437B4B40078DB4F /* Assets.xcassets */; };
 		514201552437B4B40078DB4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514201532437B4B40078DB4F /* Main.storyboard */; };
 		514201582437B4B40078DB4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 514201572437B4B40078DB4F /* main.m */; };
-		AC06BFD18D10E0CCC4CAE1D9 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */; };
+		B32DED700DA336A5565447C5 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6719848F56971ABE57968928 /* libPods-npmpackagesupdateinformer-macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B25E9FE77ADC137AA0BB5AB /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* npmpackagesupdateinformer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = npmpackagesupdateinformer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2899465AAA4B4F6EF37FDE05 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		514201492437B4B30078DB4F /* npmpackagesupdateinformer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = npmpackagesupdateinformer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5142014B2437B4B30078DB4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5142014C2437B4B30078DB4F /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -24,9 +26,7 @@
 		514201562437B4B40078DB4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		514201572437B4B40078DB4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		514201592437B4B40078DB4F /* npmpackagesupdateinformer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmpackagesupdateinformer.entitlements; sourceTree = "<group>"; };
-		529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; path = "Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-npmpackagesupdateinformer-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6719848F56971ABE57968928 /* libPods-npmpackagesupdateinformer-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-npmpackagesupdateinformer-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC06BFD18D10E0CCC4CAE1D9 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */,
+				B32DED700DA336A5565447C5 /* libPods-npmpackagesupdateinformer-macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				D1CDB0E80C43DD837D2B38AB /* libPods-npmpackagesupdateinformer-macOS.a */,
+				6719848F56971ABE57968928 /* libPods-npmpackagesupdateinformer-macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -86,7 +86,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				D01203824FD0175C4B7E9732 /* Pods */,
+				9707719FD41B6DBFDE5B63B6 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -102,11 +102,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D01203824FD0175C4B7E9732 /* Pods */ = {
+		9707719FD41B6DBFDE5B63B6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */,
-				8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */,
+				2899465AAA4B4F6EF37FDE05 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */,
+				0B25E9FE77ADC137AA0BB5AB /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -142,7 +142,7 @@
 				514201462437B4B30078DB4F /* Frameworks */,
 				514201472437B4B30078DB4F /* Resources */,
 				381D8A6E24576A4E00465D17 /* Bundle React Native code and images */,
-				9410A5864D671251994B627C /* [CP] Copy Pods Resources */,
+				49D7A2D841895A710AE4E57F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,17 +263,19 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native-macos/scripts/react-native-xcode.sh\n";
 		};
-		9410A5864D671251994B627C /* [CP] Copy Pods Resources */ = {
+		49D7A2D841895A710AE4E57F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-npmpackagesupdateinformer-macOS/Pods-npmpackagesupdateinformer-macOS-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +360,7 @@
 		};
 		5142015B2437B4B40078DB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 529F3AA66A23B1D6F6F98F1F /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */;
+			baseConfigurationReference = 2899465AAA4B4F6EF37FDE05 /* Pods-npmpackagesupdateinformer-macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -382,7 +384,7 @@
 		};
 		5142015C2437B4B40078DB4F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8117B398216048583A642CB1 /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */;
+			baseConfigurationReference = 0B25E9FE77ADC137AA0BB5AB /* Pods-npmpackagesupdateinformer-macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
