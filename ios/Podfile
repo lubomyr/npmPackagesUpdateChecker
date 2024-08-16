@@ -14,7 +14,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'npmPackagesUpdateInformer' do
+target 'npmPackagesUpdateChecker' do
   config = use_native_modules!
 
   use_react_native!(
@@ -23,7 +23,7 @@ target 'npmPackagesUpdateInformer' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'npmPackagesUpdateInformerTests' do
+  target 'npmPackagesUpdateCheckerTests' do
     inherit! :complete
     # Pods for testing
   end
