@@ -13,7 +13,9 @@ export const PackageItem = props => {
 
   return (
     <TouchableOpacity style={[styles.row, style]} onPress={onPress}>
-      <Text style={[styles.text, themeStyles.primaryTextInBackground]}>{name}</Text>
+      <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
+        {name}
+      </Text>
       <Text style={[styles.textVer, themeStyles.primaryTextInBackground]}>
         {latest}
       </Text>
