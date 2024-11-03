@@ -12,7 +12,9 @@ export const SearchItem = props => {
   return (
     <View style={[styles.row, style]}>
       <View style={styles.flex}>
-        <Text style={[styles.bold, themeStyles.primaryTextInBackground]}>{name}</Text>
+        <Text style={[styles.bold, themeStyles.primaryTextInBackground]}>
+          {name}
+        </Text>
         <Text style={[styles.text, themeStyles.primaryTextInBackground]}>
           Version: {version}
         </Text>

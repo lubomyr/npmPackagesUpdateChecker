@@ -14,10 +14,10 @@ export const getUpdatedLabel = updateTimeValue => {
   return yearsPassed
     ? `${yearsPassed} years ago`
     : monthsPassed
-    ? `${monthsPassed} months ago`
-    : daysPassed
-    ? `${daysPassed} days ago`
-    : hoursPassed
-    ? `${hoursPassed} hours ago`
-    : `${minutesPassed} minutes ago`;
+      ? `${monthsPassed} months ago`
+      : daysPassed
+        ? `${daysPassed} days ago`
+        : hoursPassed
+          ? `${hoursPassed} hours ago`
+          : `${minutesPassed} minutes ago`;
 };
