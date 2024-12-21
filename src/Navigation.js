@@ -73,7 +73,7 @@ const Navigation = props => {
   return (
     <NavigationContainer
       ref={navigationRef}
-      theme={{colors: theme, styles: themeStyles}}>
+      theme={{colors: theme, styles: themeStyles, fonts: {}}}>
       <MainStackNavigator theme={theme} navigation={navigationRef} />
     </NavigationContainer>
   );

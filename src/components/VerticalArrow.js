@@ -10,7 +10,8 @@ const VerticalArrow = props => {
 
   return (
     <Image
-      style={[style, {width: size, height: size, tintColor: color}]}
+      style={[style, {width: size, height: size}]}
+      tintColor={color}
       source={
         down
           ? require('../assets/images/arrows/arrowDown.png')
