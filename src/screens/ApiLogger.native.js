@@ -1,5 +1,5 @@
 import React from 'react';
-//import NetworkLogger from 'react-native-network-logger';
+import NetworkLogger from 'react-native-network-logger';
 
-const ApiLogger = () => null; //<NetworkLogger />;
+const ApiLogger = () => <NetworkLogger />;
 export default ApiLogger;
