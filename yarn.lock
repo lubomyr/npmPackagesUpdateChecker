@@ -2061,7 +2061,7 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
-"@react-navigation/elements@^2.6.3":
+"@react-navigation/elements@^2.6.5":
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-2.6.5.tgz#e9038e96044e47f43f7f432edc798d6b0185fc01"
   integrity sha512-HOaekvFeoqKyaSKP2hakL7OUnw0jIhk/1wMjcovUKblT76LMTumZpriqsc30m/Vnyy1a8zgp4VsuA1xftcalgQ==
@@ -2070,10 +2070,10 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
-"@react-navigation/native@7.1.17":
-  version "7.1.17"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-7.1.17.tgz#88d557c0f5000aa2741e4368c59719526f1394c4"
-  integrity sha512-uEcYWi1NV+2Qe1oELfp9b5hTYekqWATv2cuwcOAg5EvsIsUPtzFrKIasgUXLBRGb9P7yR5ifoJ+ug4u6jdqSTQ==
+"@react-navigation/native@7.1.18":
+  version "7.1.18"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-7.1.18.tgz#dc768403c5dfef13b0791fd546eaa213e0d879a5"
+  integrity sha512-DZgd6860dxcq3YX7UzIXeBr6m3UgXvo9acxp5jiJyIZXdR00Br9JwVkO7e0bUeTA2d3Z8dsmtAR84Y86NnH64Q==
   dependencies:
     "@react-navigation/core" "^7.12.4"
     escape-string-regexp "^4.0.0"
@@ -2088,12 +2088,12 @@
   dependencies:
     nanoid "^3.3.11"
 
-"@react-navigation/stack@7.4.7":
-  version "7.4.7"
-  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-7.4.7.tgz#452ddfc26610e8e6539adb3efbb9ad4f54ebb70c"
-  integrity sha512-1VDxuou+iZXEK7o+ZtCIU3b+upAwLFolptEKX+GldUy78GR66hltPxmu8bJeb2ZcgUSowBTHw03kNY1gyOdW3g==
+"@react-navigation/stack@7.4.9":
+  version "7.4.9"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-7.4.9.tgz#a561e9e36ce1e92a70075e74b1caa7c396e6c146"
+  integrity sha512-uQBiHt52yIyZm59dofCoLrvGvfPSfnzAmCstT+skRw4bBporka2ZZYzFJZakjsUeb6cK/5QcQPSM3poHkGp2nA==
   dependencies:
-    "@react-navigation/elements" "^2.6.3"
+    "@react-navigation/elements" "^2.6.5"
     color "^4.2.3"
 
 "@rollup/rollup-android-arm-eabi@4.52.4":
@@ -6670,10 +6670,10 @@ react-native-safe-area-context@5.6.1:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.6.1.tgz#cb4d249ef1a6f7e8fd0cfdfa9764838dffda26b6"
   integrity sha512-/wJE58HLEAkATzhhX1xSr+fostLsK8Q97EfpfMDKo8jlOc1QKESSX/FQrhk7HhQH/2uSaox4Y86sNaI02kteiA==
 
-react-native-screens@4.15.4:
-  version "4.15.4"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-4.15.4.tgz#834541023fd26589d2c81fcbe35576553caee840"
-  integrity sha512-aKHPDScUbpQiZEG9eZssHdG5jEQs4yiJ8eMx6g81Ex/xU7DZkv3911enzdCb+v4eJE79X8waizY0ZhauZJQmrw==
+react-native-screens@4.16.0:
+  version "4.16.0"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-4.16.0.tgz#efa42e77a092aa0b5277c9ae41391ea0240e0870"
+  integrity sha512-yIAyh7F/9uWkOzCi1/2FqvNvK6Wb9Y1+Kzn16SuGfN9YFJDTbwlzGRvePCNTOX0recpLQF3kc2FmvMUhyTCH1Q==
   dependencies:
     react-freeze "^1.0.0"
     react-native-is-edge-to-edge "^1.2.1"
