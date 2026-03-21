@@ -8,7 +8,7 @@ import prettier from 'eslint-plugin-prettier'
 export default tsEslint.config(
   js.configs.recommended,
   tsEslint.configs.recommended,
-  { ignores: ['build'] },
+  {ignores: ['build']},
   {
     extends: [js.configs.recommended, ...tsEslint.configs.recommended],
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -24,13 +24,16 @@ export default tsEslint.config(
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      // 'react-refresh/only-export-components': [
-      //   'warn',
-      //   { allowConstantExport: true },
-      // ],
+      'react-refresh/only-export-components': [
+        'warn',
+        {
+          allowConstantExport: false,
+          extraHOCs: ['withTheme', 'withLoader', 'withProgress'],
+        },
+      ],
       'prettier/prettier': ['warn'],
       'no-unused-vars': 'warn',
-      'radix': 'off',
+      radix: 'off',
       'react-hooks/exhaustive-deps': 'off',
       'react/prop-types': 'off',
       'react/no-unstable-nested-components': 'off',
@@ -39,5 +42,5 @@ export default tsEslint.config(
       '@typescript-eslint/ban-ts-comment': 'off',
     },
   },
-)
+);
 

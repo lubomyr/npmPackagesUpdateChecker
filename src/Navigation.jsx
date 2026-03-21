@@ -10,7 +10,7 @@ import MainScreen from './screens/MainScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PackageDetails from './screens/PackageDetails';
 import ApiLogger from './screens/ApiLogger';
-import {withTheme} from './hocs/withTheme';
+import {withTheme} from './hocs/withTheme.jsx';
 
 const MainStack = createStackNavigator();
 export const navigationRef = createNavigationContainerRef();

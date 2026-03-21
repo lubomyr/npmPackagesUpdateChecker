@@ -12,8 +12,8 @@ export default defineConfig({
   },
   optimizeDeps: {
     force: true,
-    esbuildOptions: {
-      loader: {
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'jsx',
         '.ts': 'tsx',
       },
@@ -23,5 +23,8 @@ export default defineConfig({
     // By default, Vite doesn't include shims for NodeJS/
     // necessary for segment analytics lib to work
     global: {},
+  },
+  legacy: {
+    inconsistentCjsInterop: true,
   },
 });
