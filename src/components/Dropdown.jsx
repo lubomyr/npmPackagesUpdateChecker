@@ -4,8 +4,7 @@ import {
   ScrollView,
   View,
   Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
+  Pressable,
   Platform,
   Modal,
 } from 'react-native';
@@ -15,8 +14,7 @@ import {dimension} from '../styles';
 import {deviceHeight} from '../helpers/dimensionHelper';
 import PropTypes from 'prop-types';
 
-const topMagicMargin =
-  Platform.OS === 'android' || Platform.OS === 'web' ? 47 : 0;
+const topMagicMargin = Platform.OS === 'android' ? 53 : 0;
 const rowHeight = 36;
 
 export const Dropdown = props => {
@@ -42,8 +40,10 @@ export const Dropdown = props => {
           isOpen && maxYPos > deviceHeight && height < deviceHeight / 2,
         );
         if (isMounted.current) {
-          setPos({x: px, y: py, width});
-          setOpenUp(openUpValue);
+          if (pos.x !== px || pos.y !== py || pos.width !== width) {
+            setPos({x: px, y: py, width});
+          }
+          if (openUp !== openUpValue) setOpenUp(openUpValue);
         }
       });
     }
@@ -95,7 +95,8 @@ export const Dropdown = props => {
     (openUp ? styles.withoutTopBorder : styles.withoutBottomBorder);
 
   const selectedView = (
-    <TouchableWithoutFeedback
+    <Pressable
+      ref={emptyViewRef}
       onPress={() => {
         if (!disabled) {
           setOpen(!isOpen);
@@ -120,7 +121,7 @@ export const Dropdown = props => {
           size={dimension.arrows}
         />
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 
   const itemList = data.map((v, index) => {
@@ -134,9 +135,9 @@ export const Dropdown = props => {
       </View>
     );
     return (
-      <TouchableWithoutFeedback key={key} onPress={() => onSelect(v)}>
+      <Pressable key={key} onPress={() => onSelect(v)}>
         {itemView}
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   });
 
@@ -166,7 +167,7 @@ export const Dropdown = props => {
   ) : null;
 
   const emptyView = useModal ? (
-    <TouchableOpacity ref={emptyViewRef} style={styles.fullWidth} />
+    <View ref={emptyViewRef} style={styles.fullWidth} />
   ) : null;
 
   const modalView =
@@ -175,29 +176,27 @@ export const Dropdown = props => {
         transparent={true}
         visible={isOpen}
         onRequestClose={() => setOpen(false)}>
-        <TouchableWithoutFeedback onPress={() => setOpen(false)}>
-          <View style={styles.modalRootView}>
-            <View
-              style={[
-                {
-                  start: pos.x,
-                  width: pos.width,
-                },
-                openUp
-                  ? {
-                      top:
-                        pos.y -
-                        topMagicMargin -
-                        4 -
-                        dimension.inputHeight -
-                        Math.min(data.length * rowHeight, deviceHeight / 2.5),
-                    }
-                  : {top: pos.y - topMagicMargin},
-              ]}>
-              {listView}
-            </View>
+        <Pressable style={styles.modalRootView} onPress={() => setOpen(false)}>
+          <View
+            style={[
+              {
+                start: pos.x,
+                width: pos.width,
+              },
+              openUp
+                ? {
+                    top:
+                      pos.y -
+                      topMagicMargin -
+                      4 -
+                      dimension.inputHeight -
+                      Math.min(data.length * rowHeight, deviceHeight / 2.5),
+                  }
+                : {top: pos.y - topMagicMargin},
+            ]}>
+            {listView}
           </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </Modal>
     ) : null;
 
@@ -206,7 +205,6 @@ export const Dropdown = props => {
   return (
     <View style={style}>
       {selectedView}
-      {emptyView}
       {!disabled && listLayout}
     </View>
   );
@@ -277,6 +275,7 @@ const styles = StyleSheet.create({
   },
   fullWidth: {
     width: '100%',
+    height: 0,
   },
   verticalArrow: {
     marginEnd: 10,
