@@ -66,7 +66,7 @@ const MainScreen = props => {
       setProgress(0);
       await Promise.all(
         packages.map(async (i, index) => {
-          let progress = (index + 1) / packages?.length;
+          const progress = (index + 1) / packages?.length;
           await checkPackageName(i?.name, progress);
         }),
       );

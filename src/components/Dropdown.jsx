@@ -8,13 +8,13 @@ import {
   Platform,
   Modal,
 } from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useTheme} from '@react-navigation/native';
 import VerticalArrow from './VerticalArrow';
 import {dimension} from '../styles';
 import {deviceHeight} from '../helpers/dimensionHelper';
 import PropTypes from 'prop-types';
 
-const topMagicMargin = Platform.OS === 'android' ? 53 : 0;
 const rowHeight = 36;
 
 export const Dropdown = props => {
@@ -26,6 +26,8 @@ export const Dropdown = props => {
   const isMounted = useRef(true);
   const {colors} = useTheme();
   const {backgroundColor, arrowColor} = colors;
+  const insets = useSafeAreaInsets();
+  const topMagicMargin = Platform.OS === 'android' ? insets?.top : 0;
 
   const setModalPosition = () => {
     if (emptyViewRef && emptyViewRef.current) {
@@ -57,7 +59,7 @@ export const Dropdown = props => {
     if (isOpen) {
       setModalPosition();
     }
-  }, [isOpen, setModalPosition]);
+  }, [isOpen, setModalPosition, insets]);
 
   const openClose = () => {
     if (!disabled) {
@@ -176,7 +178,9 @@ export const Dropdown = props => {
         transparent={true}
         visible={isOpen}
         onRequestClose={() => setOpen(false)}>
-        <Pressable style={styles.modalRootView} onPress={() => setOpen(false)}>
+        <Pressable
+          style={[styles.modalRootView, {start: -insets?.left}]}
+          onPress={() => setOpen(false)}>
           <View
             style={[
               {

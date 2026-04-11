@@ -1,3 +1,4 @@
+import axios from 'axios';
 const apiHost = 'https://registry.npmjs.org';
 const npmHost = 'https://www.npmjs.com';
 
@@ -16,6 +17,10 @@ export const getPackageDistTags = async packageName => {
 };
 
 export const getPackageAllTags = async packageName => {
-  const response = await fetch(`${apiHost}/${packageName}`).then(v => v.json());
-  return response;
+  //const response = await fetch(`${apiHost}/${packageName}`).then(v => v.json());
+  const response = await axios({
+    method: 'get',
+    url: `${apiHost}/${packageName}`,
+  });
+  return response?.data;
 };

@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {useTheme} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {FieldWrapper, Dropdown} from '../components';
@@ -36,10 +37,10 @@ const SettingsScreen = props => {
   );
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root} edges={['right', 'bottom', 'left']}>
       {themeSelector}
       {rnVersionInfo}
-    </View>
+    </SafeAreaView>
   );
 };
 export default observer(SettingsScreen);
