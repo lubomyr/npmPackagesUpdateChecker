@@ -82,6 +82,11 @@
     "vite": "8.2.2",
     "vite-plugin-react-native-web": "3.2.0"
   },
+  "overrides": {
+    "@react-native/jest-preset": {
+      "jest-environment-node": "30.4.1"
+    }
+  },
   "engines": {
     "node": ">= 22.11.0"
   },
